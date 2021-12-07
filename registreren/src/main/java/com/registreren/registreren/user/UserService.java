@@ -1,14 +1,22 @@
 package com.registreren.registreren.user;
 
 import com.registreren.registreren.user.dto.UserDTO;
+import com.registreren.registreren.user.token.ConfirmationToken;
+import com.registreren.registreren.user.token.ConfirmationTokenService;
 import lombok.AllArgsConstructor;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.time.LocalDateTime;
+import java.util.IllformedLocaleException;
 
 @RequiredArgsConstructor
+@Service
 public class UserService implements UserDetailsService {
 
     @NonNull

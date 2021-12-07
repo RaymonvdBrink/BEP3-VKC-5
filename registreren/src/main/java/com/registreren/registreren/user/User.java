@@ -20,7 +20,7 @@ public class User implements UserDetails {
     @MongoId
     private Long id;
 
-    private String username;
+    private String email;
     private String password;
     private String firstName;
     private String lastName;
@@ -29,6 +29,11 @@ public class User implements UserDetails {
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return null;
+    }
+
+    @Override
+    public String getUsername() {
+        return email;
     }
 
     @Override
