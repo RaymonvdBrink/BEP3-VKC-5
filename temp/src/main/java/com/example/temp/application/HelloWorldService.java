@@ -3,8 +3,9 @@ package com.example.temp.application;
 import com.example.temp.model.HelloWorld;
 import com.example.temp.persistence.SpringHelloWorldRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import javax.transaction.Transactional;
+
 import java.util.Optional;
 
 @Transactional

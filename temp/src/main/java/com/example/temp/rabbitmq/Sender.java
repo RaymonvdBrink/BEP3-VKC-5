@@ -17,7 +17,7 @@ public class Sender {
             Channel channel = connection.createChannel();
             channel.queueDeclare("this-is-my-queue", false, false, false, null);
 
-            String message = "dit is een message" + LocalDateTime.now();
+            String message = "dit is een message, tijd: " + LocalDateTime.now();
 
             channel.basicPublish("", "this-is-my-queue", false, null, message.getBytes());
 
