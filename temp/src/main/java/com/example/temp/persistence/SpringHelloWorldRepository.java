@@ -1,7 +1,7 @@
 package com.example.temp.persistence;
 
 import com.example.temp.model.HelloWorld;
-import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.mongodb.repository.MongoRepository;
 
-public interface SpringHelloWorldRepository extends JpaRepository<HelloWorld, Long> {
+public interface SpringHelloWorldRepository extends MongoRepository<HelloWorld, Long> {
 }
