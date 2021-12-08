@@ -10,3 +10,27 @@ services:
     volumes:
       - ./rabbitmq/volume/data/:/var/lib/rabbitmq/
       - ./rabbitmq/volume/log/:/var/log/rabbitmq/
+
+  # https://hub.docker.com/_/mongo
+  mongodb:
+    image: mongo:latest
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: admin
+    ports:
+      - 27017:27017
+    volumes:
+      - ./mongodb/volume/data/:/data/db/
+
+  mongo-express:
+    image: mongo-express:latest
+    #restart: always
+    environment:
+      #ME_CONFIG_MONGODB_URL: mongodb://mongodb:27017/
+      ME_CONFIG_MONGODB_SERVER: mongodb
+      ME_CONFIG_MONGODB_ADMINUSERNAME: admin
+      ME_CONFIG_MONGODB_ADMINPASSWORD: admin
+      #ME_CONFIG_BASICAUTH_USERNAME: admin
+      #ME_CONFIG_BASICAUTH_PASSWORD: admin
+    ports:
+      - 8092:8081

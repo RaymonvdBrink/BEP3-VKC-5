@@ -1,14 +1,15 @@
 package com.example.temp.model;
 
-import javax.persistence.*;
 
-@Entity
-@Table(name = "HelloWorld")
+
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+
+@Document
 public class HelloWorld {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
-    @Column
+    //@Indexed
     private String text;
 
     public HelloWorld(){}

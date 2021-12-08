@@ -4,7 +4,8 @@ import com.example.temp.model.HelloWorld;
 import com.example.temp.persistence.SpringHelloWorldRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
-import org.springframework.transaction.annotation.Transactional;
+
+import java.util.Optional;
 
 @Component
 public class DataInitializer implements CommandLineRunner {
@@ -16,11 +17,13 @@ public class DataInitializer implements CommandLineRunner {
     }
 
     @Override
-    @Transactional
     public void run(String... args) {
-        HelloWorld helloWorld = new HelloWorld("Hello world");
+        Optional<HelloWorld> helloWorld = repo.findById(Long.valueOf(0));
 
-        repo.save(helloWorld);
+        if(!helloWorld.isPresent()) {
+            HelloWorld newHelloWorld = new HelloWorld("Hello world");
 
+            repo.save(newHelloWorld);
+        }
     }
 }
