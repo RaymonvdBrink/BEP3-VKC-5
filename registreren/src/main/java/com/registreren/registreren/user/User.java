@@ -1,10 +1,6 @@
 package com.registreren.registreren.user;
 
-import com.mongodb.lang.NonNull;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
+import lombok.*;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.FieldType;
 import org.springframework.data.mongodb.core.mapping.MongoId;
@@ -13,17 +9,22 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
 
-@AllArgsConstructor @NoArgsConstructor @Data
+@RequiredArgsConstructor @NoArgsConstructor @Data
 @Document(collection = "User")
 public class User implements UserDetails {
 
     @MongoId
     private Long id;
 
+    @NonNull
     private String email;
+    @NonNull
     private String password;
+    @NonNull
     private String firstName;
+    @NonNull
     private String lastName;
+    @NonNull
     private String role;
 
     @Override
