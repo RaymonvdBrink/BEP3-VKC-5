@@ -1,8 +1,20 @@
 package com.gerecht.gerecht.domain;
 
-public class Gerecht {
+import org.springframework.data.annotation.Id;
 
-    private boolean verkocht;
+public class Gerecht {
+    @Id
+    private int id;
     private String naam;
+    private boolean verkocht;
+    private String beschrijving;
+
+
+
+    public Gerecht(String naam, boolean verkocht, String beschrijving){
+        this.naam = naam;
+        this.verkocht = verkocht;
+        this.beschrijving = beschrijving;
+    }
 
 }
