@@ -17,7 +17,7 @@ public class mongoTest {
 
 
         MongoOperations mongoOps = new MongoTemplate(client, "database");
-        mongoOps.insert(new Gerecht("cheese burger", false, "cheese burger"));
+        mongoOps.insert(new Gerecht("cheese burger", "cheese burger", 5.50));
 
         System.out.println(mongoOps.findOne(new Query(where("name").is("cheese burger")), Gerecht.class));
 

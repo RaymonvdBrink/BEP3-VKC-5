@@ -25,7 +25,6 @@ public class GerechtController {
         MongoOperations mongoOps = new MongoTemplate(client, "database");
         //mongoOps.insert(new Gerecht());
 
-
         mongoOps.dropCollection("someEntity");
 
         return null;
