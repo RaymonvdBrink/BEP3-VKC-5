@@ -1,6 +1,6 @@
 package com.bestelling.bestelling;
 
-import com.bestelling.bestelling.test.Receiver;
+//import com.bestelling.bestelling.test.Receiver;
 import org.springframework.amqp.core.Binding;
 import org.springframework.amqp.core.BindingBuilder;
 import org.springframework.amqp.core.Queue;
@@ -16,7 +16,7 @@ import org.springframework.context.annotation.Bean;
 public class BestellingApplication {
 
     //test code start
-    public static final String topicExchangeName = "test-rabbitMQ-exchange";
+    /*public static final String topicExchangeName = "test-rabbitMQ-exchange";
 
     static final String queueName = "test-rabbitMQ";
 
@@ -51,7 +51,7 @@ public class BestellingApplication {
     @Bean
     MessageListenerAdapter listenerAdapter(Receiver receiver) {
         return new MessageListenerAdapter(receiver, "receiveMessage");
-    }
+    }*/
     //test code stop
 
     public static void main(String[] args) {
