@@ -1,33 +1,25 @@
 package com.bestelling.bestelling.infrastructure.driver.web;
 
+import com.bestelling.bestelling.core.application.query.BestellingCommandHandler;
 import com.bestelling.bestelling.core.application.query.BestellingQueryHandler;
-import com.bestelling.bestelling.core.domain.Adres;
-import com.bestelling.bestelling.core.domain.Bestelling;
-import com.bestelling.bestelling.core.domain.BestellingId;
-import com.bestelling.bestelling.core.domain.Status;
-import com.bestelling.bestelling.core.ports.storage.BestellingRepository;
-import org.springframework.data.domain.Example;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
-import org.springframework.data.repository.query.FluentQuery;
+import com.bestelling.bestelling.core.domain.*;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.client.RestTemplate;
 
-import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
-import java.util.function.Function;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/bestelling")
 public class BestellingController {
-    private final BestellingQueryHandler service;
-    public BestellingController(BestellingQueryHandler service) {
-        this.service = service;
+    private final BestellingQueryHandler serviceQuery;
+    private final BestellingCommandHandler serviceCommand;
+    public BestellingController(BestellingQueryHandler serviceQuery, BestellingCommandHandler serviceCommand) {
+        this.serviceQuery = serviceQuery;
+        this.serviceCommand = serviceCommand;
     }
 
     @GetMapping
@@ -36,15 +28,35 @@ public class BestellingController {
     }
 
     @GetMapping("/test")
-    public List<Bestelling> testGet(){
-        Adres Atest = new Adres("teststraat", "1234AB");
-        BestellingId id = new BestellingId(1);
-        Bestelling Btest = new Bestelling(id, Status.INBEHANDELING, (float) 1.00, Atest, "Bob");
+    public void testGet(){
+        Adres adres = new Adres("teststraat", "1234AB");
+        Klant klant = new Klant(UUID.randomUUID(), "bob", adres);
+        //serviceCommand.saveKlant(klant);
 
-        //service.save(Btest);
+        List<GerechtLijstItem> gerechtLijst = new ArrayList<>();
+        gerechtLijst.add(new GerechtLijstItem(UUID.randomUUID(), "pizza", 1.00));
+        gerechtLijst.add(new GerechtLijstItem(UUID.randomUUID(), "patta", 2.00));
 
-        List<Bestelling> toreturn = service.getAll();
+        //serviceCommand.saveGerechtLijst(gerechtLijst);
 
-        return toreturn;
+        Gerecht gerecht = new Gerecht(UUID.randomUUID(), "pizza", 1.00, 1);
+        List<Gerecht> gerechten = new ArrayList<>();
+        gerechten.add(gerecht);
+        gerechten.add(new Gerecht(UUID.randomUUID(), "patta", 2.00, 2));
+        Bestelling Btest = new Bestelling(Status.INBEHANDELING, gerechten, klant.getAdres(), klant.getNaam());
+
+        //serviceCommand.saveBestelling(Btest);
+
+
+        //List<Bestelling> toreturn = serviceQuery.getAllBestelling();
+
+        //return toreturn;
+
+        serviceCommand.updateBesteldeGerechten(Btest);
+    }
+
+    @PostMapping
+    public void newBesteling(){
+
     }
 }
