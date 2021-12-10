@@ -1,4 +1,4 @@
-package com.gerecht.gerecht.port.messaging;
+package com.gerecht.gerecht.web;
 
 import com.gerecht.gerecht.GerechtApplication;
 import com.gerecht.gerecht.domain.Gerecht;
