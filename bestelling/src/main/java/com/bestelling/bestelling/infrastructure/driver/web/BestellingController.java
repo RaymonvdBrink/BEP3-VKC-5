@@ -3,10 +3,8 @@ package com.bestelling.bestelling.infrastructure.driver.web;
 import com.bestelling.bestelling.core.application.query.BestellingCommandHandler;
 import com.bestelling.bestelling.core.application.query.BestellingQueryHandler;
 import com.bestelling.bestelling.core.domain.*;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import com.bestelling.bestelling.infrastructure.driver.web.dto.BestellingDTO;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,9 +29,11 @@ public class BestellingController {
     public void testGet(){
         Adres adres = new Adres("teststraat", "1234AB");
         Klant klant = new Klant(UUID.randomUUID(), "bob", adres);
-        //serviceCommand.saveKlant(klant);
+        serviceCommand.saveKlant(klant);
 
-        List<GerechtLijstItem> gerechtLijst = new ArrayList<>();
+        Klant test = serviceQuery.getKlantById(klant.getId());
+
+        /*List<GerechtLijstItem> gerechtLijst = new ArrayList<>();
         gerechtLijst.add(new GerechtLijstItem(UUID.randomUUID(), "pizza", 1.00));
         gerechtLijst.add(new GerechtLijstItem(UUID.randomUUID(), "patta", 2.00));
 
@@ -52,11 +52,25 @@ public class BestellingController {
 
         //return toreturn;
 
-        serviceCommand.updateBesteldeGerechten(Btest);
+        //serviceCommand.updateBesteldeGerechten(Btest);*/
     }
 
     @PostMapping
-    public void newBesteling(){
+    public BestellingDTO newBesteling(@RequestBody BestellingDTO bestellingDTO){
+        Klant klant = serviceQuery.getKlantById(bestellingDTO.getKlantId());
 
+        ArrayList<Gerecht> gerechten = new ArrayList<>();
+        bestellingDTO.getBestelingLijst().forEach((id, aantal) -> {
+            GerechtLijstItem item = serviceQuery.getGerechtLijstItemById(id);
+            Gerecht gerecht = new Gerecht(item.getId(), item.getNaam(), item.getPrice(), aantal);
+            gerechten.add(gerecht);
+        });
+
+        Bestelling bestelling = new Bestelling(Status.INBEHANDELING, gerechten, klant.getAdres(), klant.getNaam());
+
+        serviceCommand.saveBestelling(bestelling);
+        serviceCommand.updateBesteldeGerechten(bestelling);
+
+        return bestellingDTO;
     }
 }
