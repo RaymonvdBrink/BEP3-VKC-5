@@ -1,15 +1,18 @@
 package com.registreren.registreren.user;
 
 import com.registreren.registreren.user.dto.UserDTO;
+import com.registreren.registreren.user.dto.ValidateDTO;
 import lombok.AllArgsConstructor;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RequiredArgsConstructor
-@RestController("/user")
+@RestController
+@RequestMapping("/user")
 public class UserController {
 
     @NonNull
@@ -27,5 +30,10 @@ public class UserController {
         }
 
         return ResponseEntity.ok("Registered user to database");
+    }
+
+    @GetMapping("/validateUser")
+    public ResponseEntity<?> validateUser(@RequestBody ValidateDTO validateDTO){
+        return new ResponseEntity<>(userService.validateUser(validateDTO), HttpStatus.OK);
     }
 }

@@ -14,7 +14,7 @@ import java.util.Collection;
 public class User implements UserDetails {
 
     @MongoId
-    private Long id;
+    private String id;
 
     @NonNull
     private String email;
