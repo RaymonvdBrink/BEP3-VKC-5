@@ -8,7 +8,8 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDateTime;
 import java.util.Optional;
 
-@Service @RequiredArgsConstructor
+@Service
+@RequiredArgsConstructor
 public class ConfirmationTokenService {
 
     @NonNull
@@ -25,5 +26,4 @@ public class ConfirmationTokenService {
     public int setConfirmedAt(String token) {
         return 0;
     }
-
 }
