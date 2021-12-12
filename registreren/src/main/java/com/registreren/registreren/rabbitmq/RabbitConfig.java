@@ -21,9 +21,9 @@ public class RabbitConfig extends RabbitConfigTemplate{
         return new DirectExchange("user_exchange");
     }
 
-    @Bean
-    public BindingBuilder.GenericArgumentsConfigurer binding(Queue queue, Exchange exchange){
-        return BindingBuilder.bind(queue).to(exchange).with("post_user_key");
+    @Override
+    public BindingBuilder.GenericArgumentsConfigurer keywordsBinding() {
+        return super.keywordsBinding();
     }
 
     @Bean
@@ -31,11 +31,8 @@ public class RabbitConfig extends RabbitConfigTemplate{
         return new Jackson2JsonMessageConverter();
     }
 
-    @Bean
-    public AmqpTemplate template(ConnectionFactory connectionFactory){
-        final RabbitTemplate rabbitTemplate = new RabbitTemplate(connectionFactory);
-
-        rabbitTemplate.setMessageConverter(converter());
-        return rabbitTemplate;
+    @Override
+    public AmqpTemplate template(ConnectionFactory connectionFactory) {
+        return super.template(connectionFactory);
     }
 }

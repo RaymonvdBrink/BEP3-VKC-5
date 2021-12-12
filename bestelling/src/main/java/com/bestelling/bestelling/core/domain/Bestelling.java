@@ -20,7 +20,7 @@ public class Bestelling {
 
     private String klantnaam;
 
-    public Bestelling( Status status, List<Gerecht> gerechten, Adres adres, String klantnaam) {
+    public Bestelling(Status status, List<Gerecht> gerechten, Adres adres, String klantnaam) {
         this.id = UUID.randomUUID();
         this.status = status;
         this.gerechten = gerechten;

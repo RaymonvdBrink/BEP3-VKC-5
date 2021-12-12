@@ -17,7 +17,7 @@ import java.time.LocalDateTime;
 public class ConfirmationToken {
 
     @MongoId
-    private Long id;
+    private String id;
 
     @NonNull
     private String token;
