@@ -7,7 +7,7 @@ import org.springframework.amqp.support.converter.Jackson2JsonMessageConverter;
 import org.springframework.amqp.support.converter.MessageConverter;
 import org.springframework.context.annotation.Bean;
 
-public abstract class RabbitConfigTemplate {
+public abstract class RabbitConfigAdapter {
 
     private MessageConverter converter(){
         return new Jackson2JsonMessageConverter();
@@ -17,11 +17,11 @@ public abstract class RabbitConfigTemplate {
 
     public abstract Exchange exchange();
 
-    public BindingBuilder.GenericArgumentsConfigurer keywordsBinding() {
+    public Binding keywordsBinding(String routingKey) {
         return BindingBuilder
                 .bind(queue())
                 .to(exchange())
-                .with("post_user");
+                .with(routingKey).noargs();
     }
 
     public AmqpTemplate template(ConnectionFactory connectionFactory){
