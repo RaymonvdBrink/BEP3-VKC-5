@@ -1,6 +1,7 @@
 package com.registreren.registreren.user;
 
 import com.registreren.registreren.user.dto.UserDTO;
+import com.registreren.registreren.user.dto.UserQDTO;
 import com.registreren.registreren.user.dto.ValidateDTO;
 import com.registreren.registreren.user.email.EmailValidator;
 import com.registreren.registreren.user.token.ConfirmationToken;
@@ -34,7 +35,7 @@ public class UserService {
     private final RabbitTemplate rabbitTemplate;
 
     //TODO: Logic for registering user to database...
-    public void registerUser(UserDTO userDTO){
+    public User registerUser(UserDTO userDTO){
 
         boolean isValidEmail = emailValidator.validateEmail(userDTO.getEmail());
         boolean exists = userRepository.findByEmail(userDTO.getEmail()).isPresent();
@@ -53,16 +54,23 @@ public class UserService {
                 encPass,
                 userDTO.getFirstName(),
                 userDTO.getLastName(),
-                "USER");
+                Role.KLANT,
+                new Address(userDTO.getAddress().getCity(),
+                userDTO.getAddress().getPostcode(),
+                userDTO.getAddress().getStreet(),
+                userDTO.getAddress().getHouseNumber()));
 
-        userRepository.insert(user);
+        return userRepository.insert(user);
+    }
+
+    //TODO: Specify what kind of data to be posted to the queue
+    public void produceUser(UserQDTO user){
         rabbitTemplate.convertAndSend("user_exchange", "post_user_key", user);
     }
 
     public boolean validateUser(ValidateDTO validateDTO){
         userRepository.findByEmail(validateDTO.getEmail())
                 .orElseThrow(() -> new IllegalStateException("Can't find user by email"));
-
         return true;
     }
 }

@@ -1,6 +1,6 @@
 package com.registreren.registreren.user;
 
-public enum Roles {
+public enum Role {
 
     KLANT,
     KOK,

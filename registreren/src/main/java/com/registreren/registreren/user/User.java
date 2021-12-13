@@ -26,7 +26,9 @@ public class User implements UserDetails {
     @NonNull
     private String lastName;
     @NonNull
-    private String role;
+    private Role role;
+    @NonNull
+    private Address address;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

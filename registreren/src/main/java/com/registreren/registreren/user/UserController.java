@@ -1,6 +1,7 @@
 package com.registreren.registreren.user;
 
 import com.registreren.registreren.user.dto.UserDTO;
+import com.registreren.registreren.user.dto.UserQDTO;
 import com.registreren.registreren.user.dto.ValidateDTO;
 import lombok.AllArgsConstructor;
 import lombok.NonNull;
@@ -22,7 +23,12 @@ public class UserController {
     public ResponseEntity<?> registerUser(@RequestBody UserDTO userDTO){
 
         try {
-            userService.registerUser(userDTO);
+            User user = userService.registerUser(userDTO);
+            userService.produceUser(new UserQDTO(
+                    user.getEmail(),
+                    user.getFirstName(),
+                    user.getLastName(),
+                    user.getAddress()));
         }
         catch(Exception e){
             e.printStackTrace();
