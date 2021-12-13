@@ -1,4 +1,4 @@
-package com.gerecht.gerecht.domain;
+package com.gerecht.gerecht.core.domain;
 
 import org.springframework.data.annotation.Id;
 
