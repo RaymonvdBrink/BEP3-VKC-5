@@ -1,6 +1,6 @@
 package com.gerecht.gerecht;
 
-import com.gerecht.gerecht.domain.Gerecht;
+import com.gerecht.gerecht.core.domain.Gerecht;
 import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoClients;
 import org.springframework.boot.SpringApplication;
