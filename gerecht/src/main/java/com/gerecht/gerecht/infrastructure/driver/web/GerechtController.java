@@ -14,13 +14,6 @@ public class GerechtController {
 
     @RequestMapping("/gerecht")
     public Gerecht geefGerechten(){
-        MongoClient client = MongoClients.create("mongodb://localhost");
-
-
-        MongoOperations mongoOps = new MongoTemplate(client, "database");
-        //mongoOps.insert(new Gerecht());
-
-        mongoOps.dropCollection("someEntity");
 
         return null;
     }
