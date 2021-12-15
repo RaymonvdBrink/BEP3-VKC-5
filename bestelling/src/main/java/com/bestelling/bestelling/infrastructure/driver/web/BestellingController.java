@@ -7,6 +7,7 @@ import com.bestelling.bestelling.infrastructure.driver.web.dto.BestellingDTO;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 @RestController
@@ -26,13 +27,13 @@ public class BestellingController {
 
     @GetMapping("/test")
     public void testGet(){
-        Adres adres = new Adres("teststraat", "1234AB");
+        Adres adres = new Adres("Utrecht","teststraat","1" ,"1234AB");
         Klant klant = new Klant(UUID.randomUUID(), "bob", "last", adres);
         serviceCommand.saveKlant(klant);
 
         Klant test = serviceQuery.getKlantById(klant.getId());
 
-        /*List<GerechtLijstItem> gerechtLijst = new ArrayList<>();
+        List<GerechtLijstItem> gerechtLijst = new ArrayList<>();
         gerechtLijst.add(new GerechtLijstItem(UUID.randomUUID(), "pizza", 1.00));
         gerechtLijst.add(new GerechtLijstItem(UUID.randomUUID(), "patta", 2.00));
 
@@ -42,7 +43,7 @@ public class BestellingController {
         List<Gerecht> gerechten = new ArrayList<>();
         gerechten.add(gerecht);
         gerechten.add(new Gerecht(UUID.randomUUID(), "patta", 2.00, 2));
-        Bestelling Btest = new Bestelling(Status.INBEHANDELING, gerechten, klant.getAdres(), klant.getNaam());
+        Bestelling Btest = new Bestelling(Status.INBEHANDELING, gerechten, klant.getAdres(), klant.getName());
 
         //serviceCommand.saveBestelling(Btest);
 
@@ -51,7 +52,7 @@ public class BestellingController {
 
         //return toreturn;
 
-        //serviceCommand.updateBesteldeGerechten(Btest);*/
+        serviceCommand.updateBesteldeGerechten(Btest);
     }
 
     @PostMapping

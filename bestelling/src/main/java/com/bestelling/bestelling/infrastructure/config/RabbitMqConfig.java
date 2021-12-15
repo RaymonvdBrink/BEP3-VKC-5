@@ -40,8 +40,18 @@ public class RabbitMqConfig {
     }
 
     @Bean
+    public Exchange userExchange() {
+        return new DirectExchange("user_exchange");
+    }
+
+    @Bean
     public Queue bestellingKeywordsQueue() {
         return QueueBuilder.durable(bestellingKeywordsQueueName).build();
+    }
+
+    @Bean
+    public Queue userQueue(){
+        return QueueBuilder.durable("post_user_queue").build();
     }
 
     @Bean
@@ -51,6 +61,16 @@ public class RabbitMqConfig {
                 .to(bestellingBoardExchange())
                 .with(bestellingKeywordsRoutingKey);
     }
+
+    private final static String POST_USER_ROUTING_KEY = "post_user_key";
+    @Bean
+    public Binding userKeywordsBinding() {
+        return BindingBuilder
+                .bind(userQueue())
+                .to(userExchange())
+                .with(POST_USER_ROUTING_KEY).noargs();
+    }
+
 
     @Bean
     public Queue keywordsQueue() {
