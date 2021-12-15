@@ -9,12 +9,14 @@ import java.util.UUID;
 public class Klant {
     @Id
     private UUID id;
-    private String naam;
+    private String firstName;
+    private String lastName;
     private Adres adres;
 
-    public Klant(UUID id, String naam, Adres adres) {
+    public Klant(UUID id, String firstName, String lastName, Adres adres) {
         this.id = id;
-        this.naam = naam;
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.adres = adres;
     }
 
@@ -22,8 +24,16 @@ public class Klant {
         return id;
     }
 
-    public String getNaam() {
-        return naam;
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public String getName(){
+        return firstName + " " + lastName;
     }
 
     public Adres getAdres() {

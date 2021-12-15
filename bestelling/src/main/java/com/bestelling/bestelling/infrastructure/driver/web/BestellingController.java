@@ -7,7 +7,6 @@ import com.bestelling.bestelling.infrastructure.driver.web.dto.BestellingDTO;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.UUID;
 
 @RestController
@@ -28,7 +27,7 @@ public class BestellingController {
     @GetMapping("/test")
     public void testGet(){
         Adres adres = new Adres("teststraat", "1234AB");
-        Klant klant = new Klant(UUID.randomUUID(), "bob", adres);
+        Klant klant = new Klant(UUID.randomUUID(), "bob", "last", adres);
         serviceCommand.saveKlant(klant);
 
         Klant test = serviceQuery.getKlantById(klant.getId());
@@ -66,7 +65,7 @@ public class BestellingController {
             gerechten.add(gerecht);
         });
 
-        Bestelling bestelling = new Bestelling(Status.INBEHANDELING, gerechten, klant.getAdres(), klant.getNaam());
+        Bestelling bestelling = new Bestelling(Status.INBEHANDELING, gerechten, klant.getAdres(), klant.getName());
 
         serviceCommand.saveBestelling(bestelling);
         serviceCommand.updateBesteldeGerechten(bestelling);
