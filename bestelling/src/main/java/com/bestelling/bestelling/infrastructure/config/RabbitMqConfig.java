@@ -117,11 +117,6 @@ public class RabbitMqConfig {
     }
 
     @Bean
-    MessageConverter getConverter(){
-        return new Jackson2JsonMessageConverter();
-    }
-
-    @Bean
     public ConnectionFactory connectionFactory() {
         return new CachingConnectionFactory(host, port);
     }
