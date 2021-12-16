@@ -17,7 +17,6 @@ public class Gerecht {
     private String beschrijving;
     private double prijs;
 
-    //private ArrayList lijst = new ArrayList<>();
 
 
     public Gerecht(String naam, String beschrijving, double prijs){
