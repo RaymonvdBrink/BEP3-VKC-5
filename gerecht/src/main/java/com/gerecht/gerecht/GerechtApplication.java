@@ -15,17 +15,6 @@ import static org.springframework.data.mongodb.core.query.Criteria.where;
 public class GerechtApplication {
 
     public static void main(String[] args) {
-
-        MongoClient client = MongoClients.create("mongodb://localhost");
-
-
-        MongoOperations mongoOps = new MongoTemplate(client, "database");
-        //mongoOps.insert(new Gerecht());
-
-        System.out.println(mongoOps.findOne(new Query(where("name").is("spaghetti")), Gerecht.class));
-
-        mongoOps.dropCollection("someEntity");
-
         SpringApplication.run(GerechtApplication.class, args);
     }
 

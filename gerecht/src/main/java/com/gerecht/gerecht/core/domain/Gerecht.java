@@ -1,17 +1,22 @@
 package com.gerecht.gerecht.core.domain;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
+import javax.persistence.GeneratedValue;
 import java.util.ArrayList;
 
+@Document(collection = "Gerecht")
 public class Gerecht {
+
+    @GeneratedValue
     @Id
     private int id;
+
     private String naam;
     private String beschrijving;
     private double prijs;
 
-    //private ArrayList lijst = new ArrayList<>();
 
 
     public Gerecht(String naam, String beschrijving, double prijs){
@@ -19,11 +24,6 @@ public class Gerecht {
         this.beschrijving = beschrijving;
         this.prijs = prijs;
 
-//        if(lijst.size() == 0){
-//            lijst.add("pizza");
-//            lijst.add("cheese burger");
-//            lijst.add("frikandel");
-//        }
     }
 
 }

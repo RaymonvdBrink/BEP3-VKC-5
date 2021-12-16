@@ -1,20 +1,39 @@
 package com.gerecht.gerecht.infrastructure.driver.web;
 
+import com.gerecht.gerecht.core.application.GerechtService;
 import com.gerecht.gerecht.core.domain.Gerecht;
-import com.mongodb.client.MongoClient;
-import com.mongodb.client.MongoClients;
-import org.springframework.data.mongodb.core.MongoOperations;
-import org.springframework.data.mongodb.core.MongoTemplate;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import com.gerecht.gerecht.infrastructure.driver.web.dto.GerechtDTO;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
+@RequestMapping("/gerecht")
 public class GerechtController {
 
 
-    @RequestMapping("/gerecht")
-    public Gerecht geefGerechten(){
+    private final GerechtService gerechtService;
 
-        return null;
+    public GerechtController(GerechtService gerechtService) {
+        this.gerechtService = gerechtService;
+    }
+
+
+    @GetMapping("/getAll")
+    public List<Gerecht> geefGerechten(){
+
+        return gerechtService.getAlleGerechten();
+    }
+
+    @PostMapping("/create")
+    public Gerecht createGerecht(@RequestBody GerechtDTO gerechtDTO){
+        Gerecht gerecht = new Gerecht(gerechtDTO.getNaam(), gerechtDTO.getBeschrijving(), gerechtDTO.getPrijs());
+        gerechtService.createGerecht(gerecht);
+        return gerecht;
+    }
+
+    @DeleteMapping("/delete/{id}")
+    public void deleteGerecht(@PathVariable Long id){
+        gerechtService.deleteGerecht(id);
     }
 }
