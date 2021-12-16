@@ -7,7 +7,7 @@ import lombok.Data;
 @AllArgsConstructor @Data
 public class UserQDTO {
 
-    private String email;
+    private String id;
     private String firstName;
     private String lastName;
     private Address address;

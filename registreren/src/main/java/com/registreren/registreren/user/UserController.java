@@ -25,7 +25,7 @@ public class UserController {
         try {
             User user = userService.registerUser(userDTO);
             userService.produceUser(new UserQDTO(
-                    user.getEmail(),
+                    user.getId(),
                     user.getFirstName(),
                     user.getLastName(),
                     user.getAddress()));
