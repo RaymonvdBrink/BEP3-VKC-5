@@ -1,9 +1,11 @@
 package com.gerecht.gerecht.core.domain;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.ArrayList;
 
+@Document(collection = "Gerecht")
 public class Gerecht {
     @Id
     private int id;
@@ -19,11 +21,6 @@ public class Gerecht {
         this.beschrijving = beschrijving;
         this.prijs = prijs;
 
-//        if(lijst.size() == 0){
-//            lijst.add("pizza");
-//            lijst.add("cheese burger");
-//            lijst.add("frikandel");
-//        }
     }
 
 }
