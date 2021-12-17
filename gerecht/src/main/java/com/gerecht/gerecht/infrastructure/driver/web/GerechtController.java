@@ -2,7 +2,7 @@ package com.gerecht.gerecht.infrastructure.driver.web;
 
 import com.gerecht.gerecht.core.application.GerechtService;
 import com.gerecht.gerecht.core.domain.Gerecht;
-import com.gerecht.gerecht.infrastructure.driver.web.dto.GerechtDTO;
+import com.gerecht.gerecht.infrastructure.driver.web.event.GerechtDTO;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
