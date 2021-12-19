@@ -5,6 +5,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 import javax.persistence.GeneratedValue;
 import java.util.ArrayList;
+import java.util.List;
 
 @Document(collection = "Gerecht")
 public class Gerecht {
@@ -12,6 +13,8 @@ public class Gerecht {
     @GeneratedValue
     @Id
     private int id;
+
+    private List<Ingredient> ingredienten;
 
     private String naam;
     private String beschrijving;
