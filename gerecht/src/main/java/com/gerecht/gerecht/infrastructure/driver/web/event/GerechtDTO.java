@@ -1,4 +1,4 @@
-package com.gerecht.gerecht.infrastructure.driver.web.dto;
+package com.gerecht.gerecht.infrastructure.driver.web.event;
 
 public class GerechtDTO {
     private String naam;

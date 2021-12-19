@@ -1,7 +1,7 @@
-package com.bestelling.bestelling.infrastructure.config;
+package com.gerecht.gerecht.infrastructure.config;
 
-import com.bestelling.bestelling.infrastructure.driven.messaging.RabbitMqEventPublisher;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.gerecht.gerecht.infrastructure.driven.messaging.RabbitMqEventPublisher;
 import org.springframework.amqp.core.*;
 import org.springframework.amqp.rabbit.connection.CachingConnectionFactory;
 import org.springframework.amqp.rabbit.connection.ConnectionFactory;
@@ -15,79 +15,46 @@ import org.springframework.http.converter.json.Jackson2ObjectMapperBuilder;
 
 @Configuration
 public class RabbitMqConfig {
+
     @Value("${spring.rabbitmq.host}")
     private String host;
 
     @Value("${spring.rabbitmq.port}")
     private int port;
 
-    @Value("${messaging.exchange.bestellingboard}")
-    private String bestellingBoardExchangeName;
+    @Value("${messaging.exchange.gerechtboard}")
+    private String gerechtBoardExchangeName;
 
-    @Value("${messaging.queue.bestelling-keywords}")
-    private String bestellingKeywordsQueueName;
+    @Value("${messaging.queue.gerecht-keywords}")
+    private String gerechtQueueName;
     @Value("${messaging.queue.all-keywords}")
     private String allKeywordsQueueName;
 
-    @Value("${messaging.routing-key.bestelling-keywords}")
-    private String bestellingKeywordsRoutingKey;
+    @Value("${messaging.routing-key.gerecht-keywords}")
+    private String gerechtKeywordsRoutingKey;
     @Value("${messaging.routing-key.all-keywords}")
     private String keywordsRoutingKey;
 
     @Bean
-    public TopicExchange bestellingBoardExchange() {
-        return new TopicExchange(bestellingBoardExchangeName);
+    public TopicExchange gerechtBoardExchange() {
+        return new TopicExchange(gerechtBoardExchangeName);
     }
 
     @Bean
-    public Exchange userExchange() {
-        return new DirectExchange("user_exchange");
+    public Queue gerechtQueue() {
+        return QueueBuilder.durable(gerechtQueueName).build();
     }
 
     @Bean
-    public Queue bestellingKeywordsQueue() {
-        return QueueBuilder.durable(bestellingKeywordsQueueName).build();
-    }
-
-    @Bean
-    public Queue userQueue(){
-        return QueueBuilder.durable("post_user_queue").build();
-    }
-
-    @Bean
-    public Binding bestellingKeywordsBinding() {
+    public Binding gerechtKeywordsBinding() {
         return BindingBuilder
-                .bind(bestellingKeywordsQueue())
-                .to(bestellingBoardExchange())
-                .with(bestellingKeywordsRoutingKey);
+                .bind(gerechtQueue())
+                .to(gerechtBoardExchange())
+                .with(gerechtKeywordsRoutingKey);
     }
-
-    private final static String POST_USER_ROUTING_KEY = "post_user_key";
-    @Bean
-    public Binding userKeywordsBinding() {
-        return BindingBuilder
-                .bind(userQueue())
-                .to(userExchange())
-                .with(POST_USER_ROUTING_KEY).noargs();
-    }
-
-
-    @Bean
-    public Queue keywordsQueue() {
-        return QueueBuilder.durable(allKeywordsQueueName).build();
-    }
-
-    @Bean
-    public Binding keywordsBinding() {
-        return BindingBuilder
-                .bind(keywordsQueue())
-                .to(bestellingBoardExchange())
-                .with(keywordsRoutingKey);
-    }
-
     @Bean
     public RabbitMqEventPublisher EventPublisher(RabbitTemplate template) {
-        return new RabbitMqEventPublisher(template, bestellingBoardExchangeName);
+        return new RabbitMqEventPublisher(template, gerechtBoardExchangeName);
     }
 
     @Bean
@@ -117,7 +84,13 @@ public class RabbitMqConfig {
     }
 
     @Bean
+    MessageConverter getConverter(){
+        return new Jackson2JsonMessageConverter();
+    }
+
+    @Bean
     public ConnectionFactory connectionFactory() {
         return new CachingConnectionFactory(host, port);
     }
+
 }
