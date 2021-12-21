@@ -5,8 +5,8 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 
 import java.util.Optional;
 
-public interface VoorraadRepository extends MongoRepository<Voorraad, Long> {
+public interface VoorraadRepository extends MongoRepository<Voorraad, String> {
 
     @Override
-    Optional<Voorraad> findById(Long id);
+    Optional<Voorraad> findById(String id);
 }

@@ -1,5 +1,6 @@
 package com.registreren.registreren.user;
 
+import com.registreren.registreren.rabbitmq.RabbitConfig;
 import com.registreren.registreren.user.dto.UserDTO;
 import com.registreren.registreren.user.dto.UserQDTO;
 import com.registreren.registreren.user.dto.ValidateDTO;
@@ -23,7 +24,7 @@ import java.util.IllformedLocaleException;
 
 @RequiredArgsConstructor
 @Service
-public class UserService {
+public class UserService implements UserDetailsService{
 
     @NonNull
     private final UserRepository userRepository;
@@ -33,6 +34,10 @@ public class UserService {
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
     @NonNull
     private final RabbitTemplate rabbitTemplate;
+
+    public void updateUser(UserDTO userDTO){
+        User user = (User) loadUserByUsername(userDTO.getEmail());
+    }
 
     //TODO: Logic for registering user to database...
     public User registerUser(UserDTO userDTO){
@@ -65,12 +70,18 @@ public class UserService {
 
     //TODO: Specify what kind of data to be posted to the queue
     public void produceUser(UserQDTO user){
-        rabbitTemplate.convertAndSend("user_exchange", "post_user_key", user);
+        rabbitTemplate.convertAndSend(RabbitConfig.MAIN_USER_EXCHANGE, RabbitConfig.POST_USER_ROUTING_KEY, user);
     }
 
     public boolean validateUser(ValidateDTO validateDTO){
         userRepository.findByEmail(validateDTO.getEmail())
                 .orElseThrow(() -> new IllegalStateException("Can't find user by email"));
         return true;
+    }
+
+    @Override
+    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+        return userRepository.findByEmail(email)
+                .orElseThrow(() -> new IllegalStateException("Can't find user by email"));
     }
 }
