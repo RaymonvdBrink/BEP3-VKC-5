@@ -1,31 +1,25 @@
 package com.gerecht.gerecht.core.domain;
 
-import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.MongoId;
 
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.UUID;
 
 @Document(collection = "Gerecht")
 public class Gerecht {
 
-    @Id
-    private int id;
-
-    private List<Ingredient> ingredienten;
-
+    @MongoId
+    private UUID id;
     private String naam;
-    private String beschrijving;
     private double prijs;
+    private int aantal;
 
 
-
-    public Gerecht(String naam, String beschrijving, double prijs){
+    public Gerecht(UUID id, String naam, double prijs, int aantal) {
+        this.id = id;
         this.naam = naam;
-        this.beschrijving = beschrijving;
         this.prijs = prijs;
-
+        this.aantal = aantal;
     }
-
 }

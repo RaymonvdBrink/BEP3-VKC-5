@@ -27,7 +27,7 @@ public class GerechtController {
 
     @PostMapping("/create")
     public Gerecht createGerecht(@RequestBody GerechtDTO gerechtDTO){
-        Gerecht gerecht = new Gerecht(gerechtDTO.getNaam(), gerechtDTO.getBeschrijving(), gerechtDTO.getPrijs());
+        Gerecht gerecht = new Gerecht(gerechtDTO.getId(), gerechtDTO.getNaam(), gerechtDTO.getPrijs(), gerechtDTO.getAantal());
         gerechtService.createGerecht(gerecht);
         return gerecht;
     }
