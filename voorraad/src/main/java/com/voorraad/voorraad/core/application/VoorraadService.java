@@ -17,7 +17,7 @@ public class VoorraadService {
         voorraadRepository.save(voorraad);
     }
 
-    public void deleteVoorraad(Long id) {
+    public void deleteVoorraad(String id) {
         voorraadRepository.deleteById(id);
     }
 }

@@ -26,7 +26,7 @@ public class VoorraadController {
     }
 
     @DeleteMapping("/delete/{id}")
-    public void deleteGerecht(@PathVariable Long id){
+    public void deleteVoorraad(@PathVariable String id){
         voorraadService.deleteVoorraad(id);
     }
 

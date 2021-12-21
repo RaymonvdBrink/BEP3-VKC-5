@@ -10,7 +10,6 @@ import java.util.List;
 @Document(collection = "Gerecht")
 public class Gerecht {
 
-
     @Id
     private int id;
 
