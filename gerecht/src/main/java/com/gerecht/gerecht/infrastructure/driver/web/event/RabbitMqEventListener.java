@@ -1,7 +1,6 @@
 package com.gerecht.gerecht.infrastructure.driver.web.event;
 
 import com.gerecht.gerecht.core.application.GerechtCommandHandler;
-import com.gerecht.gerecht.core.domain.Gerecht;
 import org.springframework.stereotype.Component;
 
 @Component
