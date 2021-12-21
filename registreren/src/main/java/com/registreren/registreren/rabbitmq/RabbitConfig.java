@@ -12,16 +12,18 @@ import org.springframework.context.annotation.Configuration;
 public class RabbitConfig extends RabbitConfigAdapter {
 
 
-    private final static String POST_USER_ROUTING_KEY = "post_user_key";
+    public static String POST_USER_ROUTING_KEY = "post_user_key";
+    public static String POST_USER_QUEUE = "post_user_queue";
+    public static String MAIN_USER_EXCHANGE = "user_exchange";
 
     @Bean
     public Queue queue(){
-        return new Queue("post_user_queue");
+        return new Queue(POST_USER_QUEUE);
     }
 
     @Bean
     public Exchange exchange(){
-        return new DirectExchange("user_exchange");
+        return new DirectExchange(MAIN_USER_EXCHANGE);
     }
 
     @Bean

@@ -19,6 +19,16 @@ public class UserController {
     @NonNull
     private final UserService userService;
 
+    @PutMapping("/update/{email}")
+    public ResponseEntity<?> updateUser(@RequestBody UserDTO userDTO, @PathVariable String email){
+        if(userService.validateUser(new ValidateDTO(userDTO.getEmail()))){
+            return null;
+        }
+
+        userService.updateUser(userDTO);
+        return null;
+    }
+
     @PostMapping("/register")
     public ResponseEntity<?> registerUser(@RequestBody UserDTO userDTO){
 

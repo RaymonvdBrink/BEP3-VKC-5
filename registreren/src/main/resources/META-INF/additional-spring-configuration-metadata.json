@@ -1,0 +1,18 @@
+{
+  "properties": [
+    {
+      "name": "post.user.routing.key",
+      "type": "java.lang.String",
+      "description": "Routing key to post user to rabbitMQ."
+    },
+    {
+      "name": "post.user.queue",
+      "type": "java.lang.String",
+      "description": "Queue where users will be posted to."
+    },
+    {
+      "name": "main.user.exchange",
+      "type": "java.lang.String",
+      "description": "Exchange for user related things in RabbitMQ."
+    }
+  ] }
