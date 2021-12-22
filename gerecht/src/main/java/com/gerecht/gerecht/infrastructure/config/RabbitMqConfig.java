@@ -39,6 +39,9 @@ public class RabbitMqConfig {
     public TopicExchange gerechtBoardExchange() {
         return new TopicExchange(gerechtBoardExchangeName);
     }
+    public Queue keywordsQueue() {
+        return QueueBuilder.durable(allKeywordsQueueName).build();
+    }
 
     @Bean
     public Queue gerechtQueue() {
@@ -52,6 +55,14 @@ public class RabbitMqConfig {
                 .to(gerechtBoardExchange())
                 .with(gerechtKeywordsRoutingKey);
     }
+    @Bean
+    public Binding keywordsBinding() {
+        return BindingBuilder
+                .bind(keywordsQueue())
+                .to(gerechtBoardExchange())
+                .with(keywordsRoutingKey);
+    }
+
     @Bean
     public RabbitMqEventPublisher EventPublisher(RabbitTemplate template) {
         return new RabbitMqEventPublisher(template, gerechtBoardExchangeName);
