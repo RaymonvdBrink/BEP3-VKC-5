@@ -1,33 +1,34 @@
-package com.voorraad.voorraad.infrastructure.driver.web;
+package com.voorraad.voorraad.infrastructure;
 
+import com.voorraad.voorraad.core.application.VoorraadCommandHandler;
 import com.voorraad.voorraad.core.application.VoorraadService;
 import com.voorraad.voorraad.core.domain.Voorraad;
 import com.voorraad.voorraad.infrastructure.driver.web.dto.VoorraadDTO;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/voorraad")
 public class VoorraadController {
 
-    private final VoorraadService voorraadService;
+    private final VoorraadCommandHandler voorraadCommandHandler;
 
-    public VoorraadController(VoorraadService voorraadService) {
-        this.voorraadService = voorraadService;
+    public VoorraadController(VoorraadCommandHandler voorraadCommandHandler) {
+        this.voorraadCommandHandler = voorraadCommandHandler;
     }
 
 
     @PostMapping("/create")
     public Voorraad createVoorraad(@RequestBody VoorraadDTO voorraadDTO){
         Voorraad voorraad = new Voorraad(voorraadDTO.getName());
-        voorraadService.createVoorraad(voorraad);
+        voorraadCommandHandler.createVoorraad(voorraad);
         return voorraad;
     }
 
     @DeleteMapping("/delete/{id}")
-    public void deleteVoorraad(@PathVariable String id){
-        voorraadService.deleteVoorraad(id);
+    public void deleteGerecht(@PathVariable String id){
+        voorraadCommandHandler.deleteVoorraad(id);
     }
 
 

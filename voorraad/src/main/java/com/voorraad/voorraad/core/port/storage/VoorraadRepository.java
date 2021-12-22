@@ -4,9 +4,10 @@ import com.voorraad.voorraad.core.domain.Voorraad;
 import org.springframework.data.mongodb.repository.MongoRepository;
 
 import java.util.Optional;
+import java.util.UUID;
 
 public interface VoorraadRepository extends MongoRepository<Voorraad, String> {
 
-    @Override
-    Optional<Voorraad> findById(String id);
+//    @Override
+//    Optional<Voorraad> findById(String id);
 }

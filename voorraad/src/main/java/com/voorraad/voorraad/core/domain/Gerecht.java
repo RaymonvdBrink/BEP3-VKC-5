@@ -10,7 +10,7 @@ import org.springframework.data.mongodb.core.mapping.MongoId;
 
 import java.util.Date;
 
-@RequiredArgsConstructor
+//@RequiredArgsConstructor
 @Data
 @Document(collection = "Gerecht")
 public class Gerecht {

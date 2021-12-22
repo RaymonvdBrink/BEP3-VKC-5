@@ -1,18 +1,17 @@
 package com.voorraad.voorraad.core.application;
 
-
 import com.voorraad.voorraad.core.domain.Voorraad;
 import com.voorraad.voorraad.core.port.storage.VoorraadRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.UUID;
 
 @Service
-public class VoorraadService {
+public class VoorraadCommandHandler {
     private final VoorraadRepository voorraadRepository;
 
-    public VoorraadService(VoorraadRepository voorraadRepository) {
+
+    public VoorraadCommandHandler(VoorraadRepository voorraadRepository) {
         this.voorraadRepository = voorraadRepository;
     }
 
@@ -27,3 +26,12 @@ public class VoorraadService {
         return voorraadRepository.findAll();
     }
 }
+
+
+
+
+//    public void updateVoorraad(VoorraadEvent voorraad){
+//        voorraad = new VoorraadEvent(voorraad.getEventId());
+//        eventPublisher.publish(voorraad);
+//    }
+
