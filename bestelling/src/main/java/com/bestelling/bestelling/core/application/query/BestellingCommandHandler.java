@@ -44,6 +44,10 @@ public class BestellingCommandHandler {
         gerechtLijstRepository.saveAll(lijst);
     }
 
+    public void deleteGerechtLijst(){
+        gerechtLijstRepository.deleteAll();
+    }
+
     public void updateBesteldeGerechten(Bestelling bestelling){
         BesteldeGerechten besteldeGerechten = new BesteldeGerechten(bestelling.getId(), bestelling.getGerechten());
         eventPublisher.publish(besteldeGerechten);

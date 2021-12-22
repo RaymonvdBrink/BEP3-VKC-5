@@ -45,6 +45,11 @@ public class RabbitMqConfig {
     }
 
     @Bean
+    public TopicExchange gerechtBoardExchange() {
+        return new TopicExchange("gerechtboard");
+    }
+
+    @Bean
     public Queue bestellingKeywordsQueue() {
         return QueueBuilder.durable(bestellingKeywordsQueueName).build();
     }
@@ -52,6 +57,11 @@ public class RabbitMqConfig {
     @Bean
     public Queue userQueue(){
         return QueueBuilder.durable("post_user_queue").build();
+    }
+
+    @Bean
+    public Queue gerechtQueue() {
+        return QueueBuilder.durable("gerecht-keywords").build();
     }
 
     @Bean
@@ -71,6 +81,13 @@ public class RabbitMqConfig {
                 .with(POST_USER_ROUTING_KEY).noargs();
     }
 
+    @Bean
+    public Binding gerechtKeywordsBinding() {
+        return BindingBuilder
+                .bind(gerechtQueue())
+                .to(gerechtBoardExchange())
+                .with("keywords.gerecht.#");
+    }
 
     @Bean
     public Queue keywordsQueue() {

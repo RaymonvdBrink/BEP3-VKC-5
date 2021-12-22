@@ -47,4 +47,8 @@ public class Bestelling {
     public String getKlantnaam() {
         return klantnaam;
     }
+
+    public void setStatus(Status status) {
+        this.status = status;
+    }
 }
