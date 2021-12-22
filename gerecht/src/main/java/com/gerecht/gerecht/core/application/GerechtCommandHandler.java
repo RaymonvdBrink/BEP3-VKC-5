@@ -1,22 +1,24 @@
 package com.gerecht.gerecht.core.application;
 
+import com.gerecht.gerecht.core.domain.Event.AlleGerechten;
 import com.gerecht.gerecht.core.domain.Gerecht;
 import com.gerecht.gerecht.core.ports.storage.GerechtRepository;
 import com.gerecht.gerecht.core.ports.storage.VoorraadRepository;
-import com.voorraad.voorraad.core.domain.Voorraad;
+import com.gerecht.gerecht.infrastructure.driven.messaging.RabbitMqEventPublisher;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
 public class GerechtCommandHandler {
     private final GerechtRepository gerechtRepository;
     private final VoorraadRepository voorraadRepository;
+    private final RabbitMqEventPublisher eventPublisher;
 
-    public GerechtCommandHandler(GerechtRepository gerechtRepository, VoorraadRepository voorraadRepository) {
+    public GerechtCommandHandler(GerechtRepository gerechtRepository, VoorraadRepository voorraadRepository, RabbitMqEventPublisher eventPublisher) {
         this.gerechtRepository = gerechtRepository;
         this.voorraadRepository = voorraadRepository;
+        this.eventPublisher = eventPublisher;
     }
 
     public void createGerecht(Gerecht gerecht){
@@ -32,16 +34,14 @@ public class GerechtCommandHandler {
                 .orElseThrow(() -> new RuntimeException("gerecht bestaat niet"));
     }
 
-    public List<Gerecht> geefAlleBeschikbareGerechten(){
-        List<Gerecht>gerechten = new ArrayList<>();
-       for (Voorraad voorraad: voorraadRepository.findAll() )
-            if(voorraad.getItems().equals(0)){
-                return IsnietBeschikbaar;
-            }else {
-                gerechten.add(gerecht);
-            }
-
+    public List<Gerecht> getAlleGerechten(){
         return gerechtRepository.findAll();
     }
+
+    public void stuurAlleGerechten(){
+        AlleGerechten gerechten = new AlleGerechten(getAlleGerechten());
+        eventPublisher.publish(gerechten);
+    }
+
 
 }

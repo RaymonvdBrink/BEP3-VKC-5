@@ -3,18 +3,18 @@ package com.gerecht.gerecht.core.domain;
 public class Ingredient {
 
     private String naam;
-    private String beschrijving;
+    private int aantal;
 
-    public Ingredient(String naam, String beschrijving) {
+    public Ingredient(String naam, int aantal) {
         this.naam = naam;
-        this.beschrijving = beschrijving;
+        this.aantal = aantal;
     }
 
     public String getNaam() {
         return naam;
     }
 
-    public String getBeschrijving() {
-        return beschrijving;
+    public int getAantal() {
+        return aantal;
     }
 }
