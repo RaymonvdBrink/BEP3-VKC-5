@@ -1,6 +1,7 @@
 package com.voorraad.voorraad.core.application;
 
 import com.voorraad.voorraad.core.domain.Voorraad;
+import com.voorraad.voorraad.core.port.storage.GerechtRepository;
 import com.voorraad.voorraad.core.port.storage.VoorraadRepository;
 import org.springframework.stereotype.Service;
 
@@ -9,10 +10,12 @@ import java.util.List;
 @Service
 public class VoorraadCommandHandler {
     private final VoorraadRepository voorraadRepository;
+    private final GerechtRepository gerechtRepository;
 
 
-    public VoorraadCommandHandler(VoorraadRepository voorraadRepository) {
+    public VoorraadCommandHandler(VoorraadRepository voorraadRepository, GerechtRepository gerechtRepository) {
         this.voorraadRepository = voorraadRepository;
+        this.gerechtRepository = gerechtRepository;
     }
 
     public void createVoorraad(Voorraad voorraad) {
