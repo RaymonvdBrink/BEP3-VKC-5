@@ -58,7 +58,7 @@ Voorraad heeft de volgende rabbitMQ functionaltiteiten<br />
 #Registreren
 |methods|URL|omschrijving|
 |:---:|:---:|:---:|
-•|Post|/user/register|Registreert gebruiker naar MongoDB en stuurt een message naar de queue|
+|Post|/user/register|Registreert gebruiker naar MongoDB en stuurt een message naar de queue|
 
 Registreren heeft de volgende rabbitMQ functionaliteiten <br />
 * Kan een gebruiker met rollen, adres posten naar een rabbit queue die gebonden is aan een exchange.
