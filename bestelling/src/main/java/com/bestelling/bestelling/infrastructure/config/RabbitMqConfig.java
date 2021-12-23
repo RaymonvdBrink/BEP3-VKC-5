@@ -61,7 +61,7 @@ public class RabbitMqConfig {
 
     @Bean
     public Queue gerechtQueue() {
-        return QueueBuilder.durable("gerecht-keywords").build();
+        return QueueBuilder.durable("gerecht2-keywords").build();
     }
 
     @Bean

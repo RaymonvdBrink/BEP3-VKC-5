@@ -4,6 +4,10 @@ public class IngredientDTO {
     private String naam;
     private int aantal;
 
+    public IngredientDTO(String naam, int aantal) {
+        this.naam = naam;
+        this.aantal = aantal;
+    }
 
     public String getNaam() {
         return naam;

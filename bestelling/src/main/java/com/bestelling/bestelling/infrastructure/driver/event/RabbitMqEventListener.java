@@ -7,6 +7,7 @@ import com.bestelling.bestelling.core.domain.Klant;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -33,9 +34,13 @@ public class RabbitMqEventListener {
         serviceCommand.saveKlant(klant);
     }
 
-    @RabbitListener(queues = {"gerecht-keywords"})
-    void listen(List<GerechtLijstItem> itemList){
-        //serviceCommand.deleteGerechtLijst();
-        //serviceCommand.saveGerechtLijst(itemList);
+    @RabbitListener(queues = {"gerecht2-keywords"})
+    void listen(BeschikbareGerechtenDTO itemList){
+        List<GerechtLijstItem> gerechtenList = new ArrayList();
+        for (GerechtenDTO dto: itemList.getGerechten()) {
+            gerechtenList.add(new GerechtLijstItem(dto.getId(), dto.getNaam(), dto.getPrijs()));
+        }
+        serviceCommand.deleteGerechtLijst();
+        serviceCommand.saveGerechtLijst(gerechtenList);
     }
 }

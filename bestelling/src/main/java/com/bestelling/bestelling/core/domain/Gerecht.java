@@ -1,21 +1,19 @@
 package com.bestelling.bestelling.core.domain;
 
-import java.util.UUID;
-
 public class Gerecht {
-    private UUID id;
+    private String id;
     private String naam;
     private double prijs;
     private int aantal;
 
-    public Gerecht(UUID id, String naam, double prijs, int aantal) {
+    public Gerecht(String id, String naam, double prijs, int aantal) {
         this.id = id;
         this.naam = naam;
         this.prijs = prijs;
         this.aantal = aantal;
     }
 
-    public UUID getId() {
+    public String getId() {
         return id;
     }
 

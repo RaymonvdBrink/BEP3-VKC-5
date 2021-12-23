@@ -5,11 +5,12 @@ import com.gerecht.gerecht.core.domain.Gerecht;
 import com.gerecht.gerecht.core.ports.storage.GerechtRepository;
 import com.gerecht.gerecht.core.ports.storage.VoorraadRepository;
 import com.gerecht.gerecht.infrastructure.driven.messaging.RabbitMqEventPublisher;
+import com.gerecht.gerecht.infrastructure.driver.web.event.Besteldegerechten;
+import com.voorraad.voorraad.infrastructure.driver.web.dto.AlleGerechtenDTO;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 
 @Service
 public class GerechtCommandHandler {
@@ -27,17 +28,6 @@ public class GerechtCommandHandler {
         gerechtRepository.save(gerecht);
     }
 
-    public Gerecht getGerechtByName(String name){
-        List<Gerecht> gerechten = gerechtRepository.findAll();
-        for(int i=0;i<gerechten.size();i++){
-            if(name.equals(gerechten.get(i).getNaam())){
-                return gerechten.get(i);
-            }
-        }
-        return null;
-    }
-
-
     public void deleteGerecht(String id){
         gerechtRepository.delete(getGerecht(id));
     }
@@ -51,36 +41,33 @@ public class GerechtCommandHandler {
         return gerechtRepository.findAll();
     }
 
-    public void updateIngredienten(List<Gerecht> gerechten){
-        LijstGerechten besteldeGerechten = new LijstGerechten(gerechten);
+    public void stuurAlleGerechten(){
+
+        LijstGerechten gerechten = new LijstGerechten(getAlleGerechten());
         System.out.println(getAlleGerechten().toString());
-        eventPublisher.publishToVoorraad(besteldeGerechten);
+        eventPublisher.publishToVoorraad(gerechten);
+    }
+//    public void stuurAlleBeschikbareGerechten(LijstGerechten event){
+//
+//        List<Gerecht> gerechten = new ArrayList<>();
+//        for(int i =0;i<event.getGerechten().size();i++){
+//            if(event.getGerechten().get(i).getBeschikbaarheid() == true){
+//                gerechten.add(event.getGerechten().get(i));
+//            }
+//        }
+//        event.setGerechten(gerechten);
+//        eventPublisher.publishNaarBestelling(event);
+//
+//
+//    }
+    public void StuurberschikbaregerechtenBestelling(Besteldegerechten event){
+        eventPublisher.publishNaarBestelling(event);
+    }
+    public void StuurGerechtenNaarBestelling(LijstGerechten event){
+//        Besteldegerechten besteldeGerechten = new Besteldegerechten(event.getBestelling(), event.getGerechten());
+        eventPublisher.publishToBestelling(event);
+
+//        eventPublisher.publishToBestelling(besteldeGerechten);
     }
 
-    public void stuurAlleBeschikbareGerechten(LijstGerechten event) {
-
-        List<Gerecht> gerechten = new ArrayList<>();
-        List<Gerecht> DBgerechten = gerechtRepository.findAll();
-
-        for (int i = 0; i < event.getGerechten().size(); i++) {
-            if(event.getGerechten().get(i).getBeschikbaarheid()){
-                gerechten.add(event.getGerechten().get(i));
-            }
-        }
-
-        eventPublisher.publishToBestelling(gerechten);
-
-        updateIngredienten(gerechten);
-
-    }
-
-
-    public void updateDatabase(List<Gerecht> gerechten) {
-
-        for(int i = 0;i<gerechten.size();i++){
-
-            gerechtRepository.save(gerechten.get(i));
-
-        }
-    }
 }
