@@ -14,14 +14,11 @@ import java.util.List;
 import java.util.UUID;
 
 @Document(collection = "Voorraad")
-//@RequiredArgsConstructor
-@Data
 public class Voorraad {
 
 
     @MongoId
-    private String id = "1";  // dit doe ik omdat er maar 1 voorraad mag zijn dus als je een 2e wil maken krijg je een error omdat ze hetzelfde ID hebben
-                              // nog niet zeker of dit een goede aanpak is tho
+    private String id;
 
 //    @NonNull
     private String naam;

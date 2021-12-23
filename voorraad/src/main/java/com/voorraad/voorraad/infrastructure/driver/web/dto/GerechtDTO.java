@@ -60,4 +60,16 @@ public class GerechtDTO {
     public void setIngredienten(List<IngredientDTO> ingredienten) {
         this.ingredienten = ingredienten;
     }
+
+
+    @Override
+    public String toString() {
+        return "GerechtDTO{" +
+                "id='" + id + '\'' +
+                ", naam='" + naam + '\'' +
+                ", prijs=" + prijs +
+                ", aantal=" + aantal +
+                ", ingredienten=" + ingredienten +
+                '}';
+    }
 }

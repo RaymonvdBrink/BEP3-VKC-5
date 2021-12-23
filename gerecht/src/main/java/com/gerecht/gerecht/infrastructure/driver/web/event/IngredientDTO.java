@@ -12,4 +12,12 @@ public class IngredientDTO {
     public int getAantal() {
         return aantal;
     }
+
+    @Override
+    public String toString() {
+        return "IngredientDTO{" +
+                "naam='" + naam + '\'' +
+                ", aantal=" + aantal +
+                '}';
+    }
 }

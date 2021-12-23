@@ -52,4 +52,13 @@ public class AlleGerechtenDTO {
         return gerechten;
     }
 
+    @Override
+    public String toString() {
+        return "AlleGerechtenDTO{" +
+                "eventId=" + eventId +
+                ", eventDate=" + eventDate +
+                ", eventKey='" + eventKey + '\'' +
+                ", gerechten=" + gerechten +
+                '}';
+    }
 }

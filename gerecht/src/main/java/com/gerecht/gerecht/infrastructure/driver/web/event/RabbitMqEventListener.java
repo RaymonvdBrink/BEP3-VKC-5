@@ -1,6 +1,7 @@
 package com.gerecht.gerecht.infrastructure.driver.web.event;
 
 import com.gerecht.gerecht.core.application.GerechtCommandHandler;
+import com.voorraad.voorraad.infrastructure.driver.web.dto.AlleGerechtenDTO;
 import com.voorraad.voorraad.infrastructure.driver.web.dto.VoorraadDTO;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.stereotype.Component;
@@ -15,12 +16,12 @@ public class RabbitMqEventListener {
         this.serviceCommand = serviceCommand;
     }
 
-    @RabbitListener(queues = {"voorraad_keywords"})
-    void listen(VoorraadDTO voorraadDTO) {
-                                        // TODO: met Tim verbinden
+    @RabbitListener(queues = {"voorraad-keywords"})
+    void listen(AlleGerechtenDTO event) {
+        System.out.println("message has been received!: "+event.getGerechten().get(0).toString());    // TODO: met Tim verbinden
     }
 
-    @RabbitListener(queues = {"bestelling_keywords"})
+    @RabbitListener(queues = {"bestelling-keywords"})
     void listen() {                     // TODO: met raymon verbinden
 
     }

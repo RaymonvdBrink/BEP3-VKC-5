@@ -5,6 +5,7 @@ import com.voorraad.voorraad.core.domain.Voorraad;
 import com.voorraad.voorraad.core.port.storage.GerechtRepository;
 import com.voorraad.voorraad.core.port.storage.VoorraadRepository;
 import com.voorraad.voorraad.infrastructure.driven.messaging.RabbitMqEventPublisher;
+import com.voorraad.voorraad.infrastructure.driver.web.dto.AlleGerechten;
 import com.voorraad.voorraad.infrastructure.driver.web.dto.GerechtEvent;
 import org.springframework.stereotype.Service;
 
@@ -28,7 +29,7 @@ public class VoorraadCommandHandler {
         voorraadRepository.save(voorraad);
     }
 
-    public void deleteVoorraad(String id) {
+    public void deleteVoorraad(Long id) {
         voorraadRepository.deleteById(id);
     }
     public List<Voorraad> getVoorraad(){
@@ -62,8 +63,13 @@ public class VoorraadCommandHandler {
         return beschikbareGerechten;
     }
 
-    public void sendMessage(GerechtEvent event){
+    public void sendMessage(AlleGerechten event){
         rabbitMqEventPublisher.publish(event);
+    }
+
+    public Voorraad getVoorrraad(Long id){
+        return voorraadRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("voorraad bestaat niet"));
     }
 
 }

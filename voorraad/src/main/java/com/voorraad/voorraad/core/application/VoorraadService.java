@@ -20,7 +20,7 @@ public class VoorraadService {
         voorraadRepository.save(voorraad);
     }
 
-    public void deleteVoorraad(String id) {
+    public void deleteVoorraad(Long id) {
         voorraadRepository.deleteById(id);
     }
     public List<Voorraad> getVoorraad(){

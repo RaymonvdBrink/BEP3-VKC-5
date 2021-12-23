@@ -1,12 +1,13 @@
-package com.voorraad.voorraad.infrastructure.driver.web.dto;
+package com.voorraad.voorraad.core.domain.event;
 
 import com.gerecht.gerecht.core.domain.Gerecht;
+import com.voorraad.voorraad.infrastructure.driver.web.dto.GerechtEvent;
 
 import java.time.Instant;
 import java.util.List;
 import java.util.UUID;
 
-public class AlleGerechten extends GerechtEvent{
+public class AlleGerechten extends GerechtEvent {
     private List<Gerecht> gerechten;
 
 

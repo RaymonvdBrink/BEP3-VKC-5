@@ -20,6 +20,7 @@ public class RabbitMqEventPublisher {
     }
 
     public void publish(GerechtEvent event) {
+        System.out.println("message sent!");
         this.rabbitTemplate.convertAndSend(voorraadBoardExchange, event.getEventKey(), event);
     }
 }
