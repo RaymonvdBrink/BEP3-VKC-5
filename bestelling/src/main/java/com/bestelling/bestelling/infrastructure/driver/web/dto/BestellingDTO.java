@@ -5,7 +5,7 @@ import java.util.UUID;
 
 public class BestellingDTO {
     private UUID klantId;
-    private Map<UUID, Integer> bestelingLijst;
+    private Map<String, Integer> bestelingLijst;
 
     public BestellingDTO() {
 
@@ -19,11 +19,11 @@ public class BestellingDTO {
         this.klantId = klantId;
     }
 
-    public Map<UUID, Integer> getBestelingLijst() {
+    public Map<String, Integer> getBestelingLijst() {
         return bestelingLijst;
     }
 
-    public void setBestelingLijst(Map<UUID, Integer> bestelingLijst) {
+    public void setBestelingLijst(Map<String, Integer> bestelingLijst) {
         this.bestelingLijst = bestelingLijst;
     }
 }

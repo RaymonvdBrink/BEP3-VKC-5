@@ -64,7 +64,7 @@ public class BestellingQueryHandler {
         bestellingRepository.save(bestelling);
     }
 
-    public GerechtLijstItem getGerechtLijstItemById(UUID id){
+    public GerechtLijstItem getGerechtLijstItemById(String id){
         Optional<GerechtLijstItem> gerecht = gerechtLijstRepository.findById(id);
 
         if(gerecht.isPresent()) {
