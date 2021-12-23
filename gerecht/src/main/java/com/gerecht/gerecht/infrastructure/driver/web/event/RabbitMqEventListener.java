@@ -19,12 +19,16 @@ public class RabbitMqEventListener {
 
     @RabbitListener(queues = {"voorraad-keywords"})
     void listen(AlleGerechtenDTO event) {
-        System.out.println("message has been received!: "+event.getGerechten().get(0).toString());
+        System.out.println("message has been received!: " + event.getGerechten().get(0).toString());
+        commandHandler.stuurAlleBeschikbareGerechten(event);
 
     }
 
-    @RabbitListener(queues = {"bestelling-keywords"})
-    void listen() {                     // TODO: met raymon verbinden
-
-    }
+//    @RabbitListener(queues = {"bestelling-keywords"})
+//    void listen(String request ) {                     // TODO: met raymon verbinden
+//        if (request == "menu"){
+//            commandHandler.stuurAlleGerechten();
+//        }
+//        else if ()
+//    }
 }

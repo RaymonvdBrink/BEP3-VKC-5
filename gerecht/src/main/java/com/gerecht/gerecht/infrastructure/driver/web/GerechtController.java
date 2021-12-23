@@ -52,4 +52,5 @@ public class GerechtController {
     public void stuurGerechten(){
         gerechtService.stuurAlleGerechten();
     }
+    
 }
