@@ -33,7 +33,7 @@ public class RabbitMqEventListener {
         serviceCommand.saveKlant(klant);
     }
 
-    @RabbitListener(queues = {"gerecht-keywords"})
+    @RabbitListener(queues = {"gerecht2-keywords"})
     void listen(List<GerechtLijstItem> itemList){
         //serviceCommand.deleteGerechtLijst();
         //serviceCommand.saveGerechtLijst(itemList);
