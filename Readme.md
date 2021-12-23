@@ -27,3 +27,8 @@ Bestelling heeft de volgende rabbitMQ functionaliteit<br />
 
 # Registreren
 
+-UserController, regelt het registreren van een gebruiken. Encodeert het wachtwoord en slaat hem op in een mongo Database. De userdetails worden vervolgens naar de RabbitMQ verstuurt en worden bij bestelling geconsumed, zodat de bestelling service van het adres weet van de user. Regelt de rollen die de gebruikers hebben zodat er permissies opgezet kunenn worden in de andere services.
+
+
+
+
