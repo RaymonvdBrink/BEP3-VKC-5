@@ -1,6 +1,5 @@
 package com.voorraad.voorraad.infrastructure.driver.web.dto;
 
-import com.gerecht.gerecht.core.domain.Gerecht;
 
 import java.time.Instant;
 import java.util.List;

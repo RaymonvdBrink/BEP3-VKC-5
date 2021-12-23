@@ -1,7 +1,7 @@
 package com.voorraad.voorraad.infrastructure;
 
-import com.gerecht.gerecht.core.domain.Gerecht;
 import com.voorraad.voorraad.core.application.VoorraadCommandHandler;
+import com.voorraad.voorraad.core.domain.Gerecht;
 import com.voorraad.voorraad.core.domain.Ingredient;
 import com.voorraad.voorraad.core.domain.Voorraad;
 import com.voorraad.voorraad.core.port.storage.GerechtRepository;

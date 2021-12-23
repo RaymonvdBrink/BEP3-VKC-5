@@ -1,13 +1,16 @@
 package com.gerecht.gerecht.infrastructure.driver.web;
 
 import com.gerecht.gerecht.core.application.GerechtCommandHandler;
+import com.gerecht.gerecht.core.domain.Event.LijstGerechten;
 import com.gerecht.gerecht.core.domain.Gerecht;
 import com.gerecht.gerecht.core.domain.Ingredient;
+import com.gerecht.gerecht.infrastructure.driver.web.event.Besteldegerechten;
 import com.gerecht.gerecht.infrastructure.driver.web.event.GerechtDTO;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/gerecht")
@@ -52,6 +55,11 @@ public class GerechtController {
     public void stuurGerechten(){
         gerechtService.stuurAlleGerechten();
 
+    }
+    @GetMapping("/sendGerecht")
+    public void stuurGerechtNaarBestelling(){
+        LijstGerechten lijstGerechten = new LijstGerechten();
+        gerechtService.StuurGerechtenNaarBestelling(lijstGerechten);
     }
 
 

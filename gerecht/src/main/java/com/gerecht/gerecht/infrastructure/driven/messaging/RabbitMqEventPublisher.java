@@ -27,9 +27,13 @@ public class RabbitMqEventPublisher {
 
     }
 
-    public void publishToBestelling(Besteldegerechten event){
+    public void publishToBestelling(LijstGerechten event){
         this.rabbitTemplate.convertAndSend(gerechtBoardExchange, "keywords.gerecht.gerecht2", event);
         System.out.println("message sent to bestelling");
+    }
+    public void publishNaarBestelling(Besteldegerechten event){
+        this.rabbitTemplate.convertAndSend(gerechtBoardExchange,"keywords.gerecht.gerecht", event);
+        System.out.println("testetstetwte" + event);
     }
 
 

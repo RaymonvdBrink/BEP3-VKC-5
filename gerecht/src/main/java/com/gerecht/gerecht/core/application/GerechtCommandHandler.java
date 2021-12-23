@@ -47,27 +47,31 @@ public class GerechtCommandHandler {
         System.out.println(getAlleGerechten().toString());
         eventPublisher.publishToVoorraad(gerechten);
     }
-    public void stuurAlleBeschikbareGerechten(LijstGerechten event){
-        //eventPublisher.publishToBestelling(event);
-        List<Gerecht> gerechten = new ArrayList<>();
-        for(int i =0;i<event.getGerechten().size();i++){
-            if(event.getGerechten().get(i).getBeschikbaarheid() == true){
-                gerechten.add(event.getGerechten().get(i));
-            }
-        }
-        event.setGerechten(gerechten);
-
-
-    }
+//    public void stuurAlleBeschikbareGerechten(LijstGerechten event){
+//
+//        List<Gerecht> gerechten = new ArrayList<>();
+//        for(int i =0;i<event.getGerechten().size();i++){
+//            if(event.getGerechten().get(i).getBeschikbaarheid() == true){
+//                gerechten.add(event.getGerechten().get(i));
+//            }
+//        }
+//        event.setGerechten(gerechten);
+//        eventPublisher.publishNaarBestelling(event);
+//
+//
+//    }
     public void StuurberschikbaregerechtenBestelling(Besteldegerechten event){
-
+        eventPublisher.publishNaarBestelling(event);
+    }
+    public void StuurGerechtenNaarBestelling(LijstGerechten event){
+//        Besteldegerechten besteldeGerechten = new Besteldegerechten(event.getBestelling(), event.getGerechten());
+        List<Gerecht> gerechtLijst = new ArrayList<>();
+        gerechtLijst.add(new Gerecht("pizza",1.00,1));
+        gerechtLijst.add(new Gerecht("patat",2.00,1));
+        event.setGerechten(gerechtLijst);
         eventPublisher.publishToBestelling(event);
 
+//        eventPublisher.publishToBestelling(besteldeGerechten);
     }
-
-
-
-
-
 
 }

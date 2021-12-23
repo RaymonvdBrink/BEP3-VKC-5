@@ -1,6 +1,5 @@
 package com.voorraad.voorraad.infrastructure.driven.messaging;
 
-import com.gerecht.gerecht.core.domain.Gerecht;
 import com.voorraad.voorraad.core.domain.event.VoorraadEvent;
 import com.voorraad.voorraad.infrastructure.driver.web.dto.GerechtEvent;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;

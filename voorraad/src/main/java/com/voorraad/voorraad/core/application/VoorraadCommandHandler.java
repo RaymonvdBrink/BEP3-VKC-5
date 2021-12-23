@@ -1,6 +1,6 @@
 package com.voorraad.voorraad.core.application;
 
-import com.gerecht.gerecht.core.domain.Gerecht;
+import com.voorraad.voorraad.core.domain.Gerecht;
 import com.voorraad.voorraad.core.domain.Voorraad;
 import com.voorraad.voorraad.core.port.storage.GerechtRepository;
 import com.voorraad.voorraad.core.port.storage.VoorraadRepository;
