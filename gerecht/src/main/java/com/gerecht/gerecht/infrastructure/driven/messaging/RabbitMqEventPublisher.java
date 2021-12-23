@@ -18,7 +18,5 @@ public class RabbitMqEventPublisher {
 
     public void publish(AlleGerechten event) {
         this.rabbitTemplate.convertAndSend(gerechtBoardExchange, event.getEventKey(), event);
-//        GerechtEvent gerecht = new GerechtEvent();
-//        this.rabbitTemplate.convertAndSend("gerechtboard", "keywords.gerecht.gerecht", gerecht);
     }
 }

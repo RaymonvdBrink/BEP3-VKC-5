@@ -51,4 +51,5 @@ public class AlleGerechtenDTO {
     public List<GerechtDTO> getGerechten() {
         return gerechten;
     }
+
 }

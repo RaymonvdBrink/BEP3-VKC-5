@@ -15,8 +15,13 @@ public class RabbitMqEventListener {
         this.serviceCommand = serviceCommand;
     }
 
-//    @RabbitListener(queues = {"post_user_queue"})
-//    void listen(VoorraadDTO voorraadDTO) {
-//
-//    }
+    @RabbitListener(queues = {"voorraad_keywords"})
+    void listen(VoorraadDTO voorraadDTO) {
+                                        // TODO: met Tim verbinden
+    }
+
+    @RabbitListener(queues = {"bestelling_keywords"})
+    void listen() {                     // TODO: met raymon verbinden
+
+    }
 }

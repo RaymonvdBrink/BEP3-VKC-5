@@ -4,7 +4,8 @@ import com.gerecht.gerecht.core.domain.Gerecht;
 import com.voorraad.voorraad.core.domain.Voorraad;
 import com.voorraad.voorraad.core.port.storage.GerechtRepository;
 import com.voorraad.voorraad.core.port.storage.VoorraadRepository;
-import com.voorraad.voorraad.infrastructure.driver.web.dto.GerechtDTO;
+import com.voorraad.voorraad.infrastructure.driven.messaging.RabbitMqEventPublisher;
+import com.voorraad.voorraad.infrastructure.driver.web.dto.GerechtEvent;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -14,11 +15,13 @@ import java.util.List;
 public class VoorraadCommandHandler {
     private final VoorraadRepository voorraadRepository;
     private final GerechtRepository gerechtRepository;
+    private final RabbitMqEventPublisher rabbitMqEventPublisher;
 
 
-    public VoorraadCommandHandler(VoorraadRepository voorraadRepository, GerechtRepository gerechtRepository) {
+    public VoorraadCommandHandler(VoorraadRepository voorraadRepository, GerechtRepository gerechtRepository, RabbitMqEventPublisher rabbitMqEventPublisher) {
         this.voorraadRepository = voorraadRepository;
         this.gerechtRepository = gerechtRepository;
+        this.rabbitMqEventPublisher = rabbitMqEventPublisher;
     }
 
     public void createVoorraad(Voorraad voorraad) {
@@ -57,6 +60,10 @@ public class VoorraadCommandHandler {
             }
         }
         return beschikbareGerechten;
+    }
+
+    public void sendMessage(GerechtEvent event){
+        rabbitMqEventPublisher.publish(event);
     }
 
 }
