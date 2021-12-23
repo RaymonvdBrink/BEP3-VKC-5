@@ -94,7 +94,6 @@ public class RabbitMqConfig {
         return converter;
     }
 
-
     @Bean
     public ConnectionFactory connectionFactory() {
         return new CachingConnectionFactory(host, port);

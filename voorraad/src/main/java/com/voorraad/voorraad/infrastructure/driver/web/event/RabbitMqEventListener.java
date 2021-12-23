@@ -28,7 +28,7 @@ public class RabbitMqEventListener {
 //    }
     @RabbitListener(queues = {"gerecht-keywords"})
     void listen(AlleGerechtenDTO event) {
-        System.out.println(event);
+        System.out.println("listener: "+event);
     }
 }
 
