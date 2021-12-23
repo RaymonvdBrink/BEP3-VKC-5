@@ -23,7 +23,7 @@ public class SetupTestData {
         Adres adres2 = new Adres("Utrecht", "teststraat", "2", "1235AB");
         Adres adres3 = new Adres("Utrecht", "teststraat", "3", "1236AB");
 
-        Klant klant1 = new Klant(UUID.randomUUID(), "Bob", "test", adres1);
+        Klant klant1 = new Klant(UUID.fromString("4a13ae6e-9d1a-44cf-be54-48b80881d500"), "Bob", "test", adres1);
         Klant klant2 = new Klant(UUID.randomUUID(), "Jef", "test", adres2);
         Klant klant3 = new Klant(UUID.randomUUID(), "May", "test", adres3);
 
