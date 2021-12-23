@@ -1,4 +1,5 @@
-#Bestelling
+# Bestelling
+
 Besteling draait op poort 8085
 
 De API van bestellingen heeft de volgende URLS met functionaliteit
@@ -20,9 +21,9 @@ Bestelling heeft de volgende rabbitMQ functionaliteit<br />
 •	Een listener die luister naar de gerechten q en daar luistert naar een nieuwe lijst van beschikbare gerechten en dan de oude verwijderd en de nieuwe lijst van beschikbare gerechten opslaat
 
 
-#Gerecht
+# Gerecht
 
-#Voorraad
+# Voorraad
 
-#Registreren
+# Registreren
 
