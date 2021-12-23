@@ -1,5 +1,4 @@
-# Bestelling
-
+#Bestelling
 Besteling draait op poort 8085
 
 De API van bestellingen heeft de volgende URLS met functionaliteit
@@ -21,13 +20,40 @@ Bestelling heeft de volgende rabbitMQ functionaliteit<br />
 •	Een listener die luister naar de gerechten q en daar luistert naar een nieuwe lijst van beschikbare gerechten en dan de oude verwijderd en de nieuwe lijst van beschikbare gerechten opslaat
 
 
-# Gerecht
+#Gerecht
+Gerecht draait op poort 8082
 
-# Voorraad
+de API van gerecht heeft de volgende URLS met functionaliteiten
 
-# Registreren
+|methods|URL|omschrijving|
+|:---:|:---:|:---:|
+|Get|gerecht/getAll/geeft alle gerechten|
+|Post|gerecht/create|ingredient aan een lijst en maakt daarna een gerecht met ingredient
+|Delete/gerecht/delete/{id}|verwijderd het gerecht
+|Get|/gerecht /sendAll |verstuurd een lijst van gerechten naar voorraad
+|Get|/gerecht /sendGerecht |dummy data als test
 
--UserController, regelt het registreren van een gebruiken. Encodeert het wachtwoord en slaat hem op in een mongo Database. De userdetails worden vervolgens naar de RabbitMQ verstuurt en worden bij bestelling geconsumed, zodat de bestelling service van het adres weet van de user. Regelt de rollen die de gebruikers hebben zodat er permissies opgezet kunenn worden in de andere services.
+Gerecht heeft de volgende rabbitMQ functionaliteit<br />
+•	Een publisher die een lijst met gerechten stuurt naar voorraad
+              Een pubisher die een lijst van beschikbare geruchten stuurt naar bestelling<br />
+•	Een listener die luister naar voorraad die beschikbare gerecht opstuurt 
+•	Een listener die luister naar bestelling voor beschikbare gerechten voor die bestelling<br />
 
 
+#Voorraad
+Voorraad draait op poort 8083
+
+De API van voorraad heeft de volgende URLS met functionaliteit
+
+|methods|URL|omschrijving|
+|:---:|:---:|:---:|
+|Get|/voorraad/getAll|Geeft alles in voorraad|
+|Post|/voorraad/create|Maakt voorraad aan|
+|Delete|/voorraad/delete/{id}|Verwijderd voorraad|
+
+Bestelling heeft de volgende rabbitMQ functionaltiteiten<br />
+• Een publisher die de beschikbare gerechten door stuurt naar gerecht<br />
+• Een listener die luistert naar gerecht<br />
+
+#Registreren
 
