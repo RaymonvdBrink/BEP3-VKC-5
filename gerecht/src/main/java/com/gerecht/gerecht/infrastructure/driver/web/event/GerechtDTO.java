@@ -20,6 +20,10 @@ public class GerechtDTO {
         return id;
     }
 
+    public void setIngredienten(List<IngredientDTO> ingredienten) {
+        this.ingredienten = ingredienten;
+    }
+
     public List<IngredientDTO> getIngredienten() {
         return ingredienten;
     }

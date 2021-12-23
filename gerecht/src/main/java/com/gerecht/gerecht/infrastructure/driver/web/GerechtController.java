@@ -44,7 +44,7 @@ public class GerechtController {
     }
 
     @DeleteMapping("/delete/{id}")
-    public void deleteGerecht(@PathVariable Long id){
+    public void deleteGerecht(@PathVariable String id){
         gerechtService.deleteGerecht(id);
     }
 

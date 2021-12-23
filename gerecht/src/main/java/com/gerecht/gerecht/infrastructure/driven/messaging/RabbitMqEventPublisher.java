@@ -1,6 +1,7 @@
 package com.gerecht.gerecht.infrastructure.driven.messaging;
 
 import com.gerecht.gerecht.core.domain.Event.LijstGerechten;
+import com.gerecht.gerecht.infrastructure.driver.web.event.Besteldegerechten;
 import com.voorraad.voorraad.infrastructure.driver.web.dto.AlleGerechtenDTO;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 
@@ -26,7 +27,7 @@ public class RabbitMqEventPublisher {
 
     }
 
-    public void publishToBestelling(LijstGerechten event){
+    public void publishToBestelling(Besteldegerechten event){
         this.rabbitTemplate.convertAndSend(gerechtBoardExchange, "keywords.gerecht.gerecht2", event);
         System.out.println("message sent to bestelling");
     }

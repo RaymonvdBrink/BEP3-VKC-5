@@ -5,6 +5,7 @@ import com.gerecht.gerecht.core.domain.Gerecht;
 import com.gerecht.gerecht.core.ports.storage.GerechtRepository;
 import com.gerecht.gerecht.core.ports.storage.VoorraadRepository;
 import com.gerecht.gerecht.infrastructure.driven.messaging.RabbitMqEventPublisher;
+import com.gerecht.gerecht.infrastructure.driver.web.event.Besteldegerechten;
 import com.voorraad.voorraad.infrastructure.driver.web.dto.AlleGerechtenDTO;
 import org.springframework.stereotype.Service;
 
@@ -27,11 +28,11 @@ public class GerechtCommandHandler {
         gerechtRepository.save(gerecht);
     }
 
-    public void deleteGerecht(Long id){
+    public void deleteGerecht(String id){
         gerechtRepository.delete(getGerecht(id));
     }
 
-    public Gerecht getGerecht(Long id){
+    public Gerecht getGerecht(String id){
         return gerechtRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("gerecht bestaat niet"));
     }
@@ -55,6 +56,11 @@ public class GerechtCommandHandler {
             }
         }
         event.setGerechten(gerechten);
+
+
+    }
+    public void StuurberschikbaregerechtenBestelling(Besteldegerechten event){
+
         eventPublisher.publishToBestelling(event);
 
     }
