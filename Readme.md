@@ -15,9 +15,9 @@ De API van bestellingen heeft de volgende URLS met functionaliteit
 Hij kijkt dan of deze klant en gerechten er zijn, haalt hier informatie van op uit de database en stuurt dit door naar de q publisher
 
 Bestelling heeft de volgende rabbitMQ functionaliteit<br />
-•	Een publisher die de bestelde gerechten door stuurt naar gerechten<br />
-•	Een listener die luister naar de registreren q en daar op luister naar het aanmaken / update van een klant en deze opslaat<br />
-•	Een listener die luister naar de gerechten q en daar luistert naar een nieuwe lijst van beschikbare gerechten en dan de oude verwijderd en de nieuwe lijst van beschikbare gerechten opslaat
+•    Een publisher die de bestelde gerechten door stuurt naar gerechten<br />
+•    Een listener die luister naar de registreren q en daar op luister naar het aanmaken / update van een klant en deze opslaat<br />
+•    Een listener die luister naar de gerechten q en daar luistert naar een nieuwe lijst van beschikbare gerechten en dan de oude verwijderd en de nieuwe lijst van beschikbare gerechten opslaat
 
 
 #Gerecht
@@ -34,10 +34,10 @@ de API van gerecht heeft de volgende URLS met functionaliteiten
 |Get|/gerecht /sendGerecht |dummy data als test
 
 Gerecht heeft de volgende rabbitMQ functionaliteit<br />
-•	Een publisher die een lijst met gerechten stuurt naar voorraad
+•    Een publisher die een lijst met gerechten stuurt naar voorraad
               Een pubisher die een lijst van beschikbare geruchten stuurt naar bestelling<br />
-•	Een listener die luister naar voorraad die beschikbare gerecht opstuurt 
-•	Een listener die luister naar bestelling voor beschikbare gerechten voor die bestelling<br />
+•    Een listener die luister naar voorraad die beschikbare gerecht opstuurt 
+•    Een listener die luister naar bestelling voor beschikbare gerechten voor die bestelling<br />
 
 
 #Voorraad
@@ -51,9 +51,13 @@ De API van voorraad heeft de volgende URLS met functionaliteit
 |Post|/voorraad/create|Maakt voorraad aan|
 |Delete|/voorraad/delete/{id}|Verwijderd voorraad|
 
-Bestelling heeft de volgende rabbitMQ functionaltiteiten<br />
+Voorraad heeft de volgende rabbitMQ functionaltiteiten<br />
 • Een publisher die de beschikbare gerechten door stuurt naar gerecht<br />
 • Een listener die luistert naar gerecht<br />
 
 #Registreren
+- |Post|/user/register|Registreert gebruiker naar MongoDB en stuurt een message naar de queue|
 
+Registreren heeft de volgende rabbitMQ functionaliteiten <br />
+* Kan een gebruiker met rollen, adres posten naar een rabbit queue die gebonden is aan een exchange.
+* Gebruiker word gepost naar de bestelling, zodat de bestelling service weet welke gegevens hij nodig heeft om de bestelling te voltooien.
