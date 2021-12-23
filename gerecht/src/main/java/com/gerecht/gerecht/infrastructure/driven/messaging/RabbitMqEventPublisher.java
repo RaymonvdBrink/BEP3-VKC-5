@@ -16,8 +16,16 @@ public class RabbitMqEventPublisher {
         this.gerechtBoardExchange = gerechtBoardExchange;
     }
 
-    public void publish(AlleGerechten event) {
+    public void publishToVoorraad(AlleGerechten event) {
         System.out.println("message has been sent!");
-        this.rabbitTemplate.convertAndSend(gerechtBoardExchange, event.getEventKey(), event);
+        this.rabbitTemplate.convertAndSend(gerechtBoardExchange, "keywords.gerecht.gerecht", event);
     }
+
+    public void publishToBestelling(AlleGerechten event){
+        this.rabbitTemplate.convertAndSend(gerechtBoardExchange, "keywords.gerecht.gerecht", event);
+    }
+
+
+
+
 }
