@@ -1,6 +1,7 @@
 package com.voorraad.voorraad.core.domain.event;
 
-import com.gerecht.gerecht.core.domain.Gerecht;
+
+import com.voorraad.voorraad.core.domain.Gerecht;
 import com.voorraad.voorraad.infrastructure.driver.web.dto.GerechtEvent;
 
 import java.time.Instant;

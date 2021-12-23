@@ -5,6 +5,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.MongoId;
 
 
+import javax.persistence.Id;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -12,7 +13,7 @@ import java.util.UUID;
 @Document(collection = "Gerecht")
 public class Gerecht {
 
-    @MongoId
+    @Id
     private String id;
     private String naam;
     private double prijs;

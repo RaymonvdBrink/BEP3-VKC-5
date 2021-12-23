@@ -6,8 +6,6 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 import java.util.Optional;
 import java.util.UUID;
 
-public interface GerechtRepository extends MongoRepository<Gerecht, Long> {
+public interface GerechtRepository extends MongoRepository<Gerecht, String> {
 
-    @Override
-    Optional<Gerecht> findById(Long id);
 }

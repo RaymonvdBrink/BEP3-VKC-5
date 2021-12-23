@@ -5,11 +5,11 @@ import com.gerecht.gerecht.core.domain.Gerecht;
 import com.gerecht.gerecht.core.ports.storage.GerechtRepository;
 import com.gerecht.gerecht.core.ports.storage.VoorraadRepository;
 import com.gerecht.gerecht.infrastructure.driven.messaging.RabbitMqEventPublisher;
-import com.voorraad.voorraad.infrastructure.driver.web.dto.AlleGerechtenDTO;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 @Service
 public class GerechtCommandHandler {
@@ -27,11 +27,22 @@ public class GerechtCommandHandler {
         gerechtRepository.save(gerecht);
     }
 
-    public void deleteGerecht(Long id){
+    public Gerecht getGerechtByName(String name){
+        List<Gerecht> gerechten = gerechtRepository.findAll();
+        for(int i=0;i<gerechten.size();i++){
+            if(name.equals(gerechten.get(i).getNaam())){
+                return gerechten.get(i);
+            }
+        }
+        return null;
+    }
+
+
+    public void deleteGerecht(String id){
         gerechtRepository.delete(getGerecht(id));
     }
 
-    public Gerecht getGerecht(Long id){
+    public Gerecht getGerecht(String id){
         return gerechtRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("gerecht bestaat niet"));
     }
@@ -40,28 +51,36 @@ public class GerechtCommandHandler {
         return gerechtRepository.findAll();
     }
 
-    public void stuurAlleGerechten(){
-
-        LijstGerechten gerechten = new LijstGerechten(getAlleGerechten());
+    public void updateIngredienten(List<Gerecht> gerechten){
+        LijstGerechten besteldeGerechten = new LijstGerechten(gerechten);
         System.out.println(getAlleGerechten().toString());
-        eventPublisher.publishToVoorraad(gerechten);
+        eventPublisher.publishToVoorraad(besteldeGerechten);
     }
-    public void stuurAlleBeschikbareGerechten(LijstGerechten event){
-        //eventPublisher.publishToBestelling(event);
+
+    public void stuurAlleBeschikbareGerechten(LijstGerechten event) {
+
         List<Gerecht> gerechten = new ArrayList<>();
-        for(int i =0;i<event.getGerechten().size();i++){
-            if(event.getGerechten().get(i).getBeschikbaarheid() == true){
+        List<Gerecht> DBgerechten = gerechtRepository.findAll();
+
+        for (int i = 0; i < event.getGerechten().size(); i++) {
+            if(event.getGerechten().get(i).getBeschikbaarheid()){
                 gerechten.add(event.getGerechten().get(i));
             }
         }
-        event.setGerechten(gerechten);
-        eventPublisher.publishToBestelling(event);
+
+        eventPublisher.publishToBestelling(gerechten);
+
+        updateIngredienten(gerechten);
 
     }
 
 
+    public void updateDatabase(List<Gerecht> gerechten) {
 
+        for(int i = 0;i<gerechten.size();i++){
 
+            gerechtRepository.save(gerechten.get(i));
 
-
+        }
+    }
 }

@@ -17,4 +17,12 @@ public class Ingredient {
     public int getAantal() {
         return aantal;
     }
+
+    public void setNaam(String naam) {
+        this.naam = naam;
+    }
+
+    public void setAantal(int aantal) {
+        this.aantal = aantal;
+    }
 }

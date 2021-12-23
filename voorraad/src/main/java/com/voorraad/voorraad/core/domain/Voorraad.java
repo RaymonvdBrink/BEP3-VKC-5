@@ -1,6 +1,6 @@
 package com.voorraad.voorraad.core.domain;
 
-import com.gerecht.gerecht.core.domain.Gerecht;
+
 import lombok.Data;
 import lombok.Generated;
 import lombok.NonNull;

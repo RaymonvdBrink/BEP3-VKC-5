@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/gerecht")
@@ -35,7 +36,7 @@ public class GerechtController {
         }
 
         Gerecht gerecht = new Gerecht(gerechtDTO.getId(), gerechtDTO.getNaam(), gerechtDTO.getPrijs(), gerechtDTO.getAantal(), list);
-
+        gerecht.setBeschikbaarheid(gerechtDTO.getbeschikbaarheid());
 
 
 
@@ -44,13 +45,13 @@ public class GerechtController {
     }
 
     @DeleteMapping("/delete/{id}")
-    public void deleteGerecht(@PathVariable Long id){
+    public void deleteGerecht(@PathVariable String id){
         gerechtService.deleteGerecht(id);
     }
 
     @GetMapping("/sendAll")
     public void stuurGerechten(){
-        gerechtService.stuurAlleGerechten();
+        gerechtService.updateIngredienten(gerechtService.getAlleGerechten());
 
     }
 
