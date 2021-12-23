@@ -10,11 +10,21 @@ public class Ingredient {
         this.aantal = aantal;
     }
 
+    public Ingredient(){}
+
     public String getNaam() {
         return naam;
     }
 
     public int getAantal() {
         return aantal;
+    }
+
+    public void setNaam(String naam) {
+        this.naam = naam;
+    }
+
+    public void setAantal(int aantal) {
+        this.aantal = aantal;
     }
 }

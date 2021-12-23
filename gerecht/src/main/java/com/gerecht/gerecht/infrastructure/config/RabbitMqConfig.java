@@ -94,10 +94,6 @@ public class RabbitMqConfig {
         return converter;
     }
 
-    @Bean
-    MessageConverter getConverter(){
-        return new Jackson2JsonMessageConverter();
-    }
 
     @Bean
     public ConnectionFactory connectionFactory() {

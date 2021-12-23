@@ -26,4 +26,6 @@ public class BesteldeGerechten extends BestellingEvent{
     public List<Gerecht> getGerechten() {
         return gerechten;
     }
+
+
 }

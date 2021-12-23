@@ -1,4 +1,4 @@
-package com.gerecht.gerecht.core.domain.Event;
+package com.voorraad.voorraad.infrastructure.driver.web.dto;
 
 import com.gerecht.gerecht.core.domain.Gerecht;
 
@@ -26,18 +26,17 @@ public class AlleGerechten extends GerechtEvent{
     }
 
     @Override
-    public UUID getEventId() {
-        return super.getEventId();
+    public Instant getEventDate() {
+        return super.getEventDate();
     }
 
     @Override
-    public Instant getEventDate() {
-        return super.getEventDate();
+    public UUID getEventId() {
+        return super.getEventId();
     }
 
     public void setGerechten(List<Gerecht> gerechten) {
         this.gerechten = gerechten;
     }
-
 
 }

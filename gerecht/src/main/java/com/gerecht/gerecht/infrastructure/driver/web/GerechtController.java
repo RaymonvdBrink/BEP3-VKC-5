@@ -2,9 +2,11 @@ package com.gerecht.gerecht.infrastructure.driver.web;
 
 import com.gerecht.gerecht.core.application.GerechtCommandHandler;
 import com.gerecht.gerecht.core.domain.Gerecht;
+import com.gerecht.gerecht.core.domain.Ingredient;
 import com.gerecht.gerecht.infrastructure.driver.web.event.GerechtDTO;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -27,10 +29,15 @@ public class GerechtController {
 
     @PostMapping("/create")
     public Gerecht createGerecht(@RequestBody GerechtDTO gerechtDTO){
-        Gerecht gerecht = new Gerecht(gerechtDTO.getId(), gerechtDTO.getNaam(), gerechtDTO.getPrijs(), gerechtDTO.getAantal());
+        List<Ingredient> list = new ArrayList();
         for(int i = 0;i<gerechtDTO.getIngredienten().size();i++){
-            gerecht.voegIngredientToe(gerechtDTO.getIngredienten().get(i).getNaam(), gerechtDTO.getIngredienten().get(i).getAantal());
+            list.add(new Ingredient(gerechtDTO.getIngredienten().get(i).getNaam(), gerechtDTO.getIngredienten().get(i).getAantal()));
         }
+
+        Gerecht gerecht = new Gerecht(gerechtDTO.getId(), gerechtDTO.getNaam(), gerechtDTO.getPrijs(), gerechtDTO.getAantal(), list);
+
+
+
 
         gerechtService.createGerecht(gerecht);
         return gerecht;

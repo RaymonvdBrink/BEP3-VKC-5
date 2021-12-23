@@ -17,17 +17,58 @@ public class Gerecht {
     private String naam;
     private double prijs;
     private int aantal;
-    private List<Ingredient> ingredientList = new ArrayList<>();
+    private List<Ingredient> ingredienten;
 
 
-    public Gerecht(String id, String naam, double prijs, int aantal) {
+    public Gerecht(String id, String naam, double prijs, int aantal, List<Ingredient> ingredienten) {
         this.id = id;
         this.naam = naam;
         this.prijs = prijs;
         this.aantal = aantal;
+        this.ingredienten = ingredienten;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getNaam() {
+        return naam;
+    }
+
+    public void setNaam(String naam) {
+        this.naam = naam;
+    }
+
+    public double getPrijs() {
+        return prijs;
+    }
+
+    public void setPrijs(double prijs) {
+        this.prijs = prijs;
+    }
+
+    public int getAantal() {
+        return aantal;
+    }
+
+    public void setAantal(int aantal) {
+        this.aantal = aantal;
+    }
+
+    public List<Ingredient> getIngredienten() {
+        return ingredienten;
+    }
+
+    public void setIngredienten(List<Ingredient> ingredienten) {
+        this.ingredienten = ingredienten;
     }
 
     public void voegIngredientToe(String naam, int aantal){
-        ingredientList.add(new Ingredient(naam, aantal));
+        ingredienten.add(new Ingredient(naam, aantal));
     }
 }

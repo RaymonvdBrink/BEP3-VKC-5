@@ -29,7 +29,7 @@ public class VoorraadController {
 
     @PostMapping("/create")
     public Voorraad createVoorraad(@RequestBody VoorraadDTO voorraadDTO){
-        Voorraad voorraad = new Voorraad(voorraadDTO.getName());
+        Voorraad voorraad = new Voorraad(voorraadDTO.getName(), voorraadDTO.getIngredients());
         voorraadCommandHandler.createVoorraad(voorraad);
         return voorraad;
     }

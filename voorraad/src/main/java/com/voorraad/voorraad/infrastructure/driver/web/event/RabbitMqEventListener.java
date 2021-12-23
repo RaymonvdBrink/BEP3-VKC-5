@@ -2,6 +2,10 @@ package com.voorraad.voorraad.infrastructure.driver.web.event;
 
 import com.gerecht.gerecht.core.domain.Gerecht;
 import com.voorraad.voorraad.core.application.VoorraadCommandHandler;
+import com.voorraad.voorraad.infrastructure.driver.web.dto.AlleGerechten;
+import com.voorraad.voorraad.infrastructure.driver.web.dto.AlleGerechtenDTO;
+import com.voorraad.voorraad.infrastructure.driver.web.dto.GerechtDTO;
+import com.voorraad.voorraad.infrastructure.driver.web.dto.GerechtEvent;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.stereotype.Component;
 
@@ -23,12 +27,8 @@ public class RabbitMqEventListener {
 //        serviceCommand.createVoorraaad(gerecht1);
 //    }
     @RabbitListener(queues = {"gerecht-keywords"})
-    void listen(GerechtDTO gerechtDTO) {
-        Gerecht gerecht = new Gerecht(gerechtDTO.getId(), gerechtDTO.getNaam(), gerechtDTO.getPrijs(), gerechtDTO.getAantal());
-        for (int i = 0; i < gerechtDTO.getIngredienten().size(); i++) {
-            gerecht.voegIngredientToe(gerechtDTO.getIngredienten().get(i).getNaam(), gerechtDTO.getIngredienten().get(i).getAantal());
-        }
-
+    void listen(AlleGerechtenDTO event) {
+        System.out.println(event);
     }
 }
 
