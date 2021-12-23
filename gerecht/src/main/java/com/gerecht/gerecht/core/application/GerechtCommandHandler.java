@@ -42,8 +42,9 @@ public class GerechtCommandHandler {
 
         AlleGerechten gerechten = new AlleGerechten(getAlleGerechten());
         System.out.println(getAlleGerechten().toString());
-        eventPublisher.publish(gerechten);
+        eventPublisher.publishToVoorraad(gerechten);
     }
+
 
 
 

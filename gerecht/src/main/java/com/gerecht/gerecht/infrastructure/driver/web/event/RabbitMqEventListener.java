@@ -20,7 +20,7 @@ public class RabbitMqEventListener {
     @RabbitListener(queues = {"voorraad-keywords"})
     void listen(AlleGerechtenDTO event) {
         System.out.println("message has been received!: "+event.getGerechten().get(0).toString());
-
+        commandHandler.
     }
 
     @RabbitListener(queues = {"bestelling-keywords"})

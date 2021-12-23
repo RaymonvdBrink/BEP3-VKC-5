@@ -51,5 +51,6 @@ public class GerechtController {
     @GetMapping("/sendAll")
     public void stuurGerechten(){
         gerechtService.stuurAlleGerechten();
+
     }
 }
