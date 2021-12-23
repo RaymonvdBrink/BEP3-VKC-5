@@ -33,9 +33,9 @@ public class SetupTestData {
             serviceCommand.saveKlant(klant3);
         }
 
-        GerechtLijstItem item1 = new GerechtLijstItem(UUID.randomUUID(), "Pizza", 2.00);
-        GerechtLijstItem item2 = new GerechtLijstItem(UUID.randomUUID(), "Pattat", 1.00);
-        GerechtLijstItem item3 = new GerechtLijstItem(UUID.randomUUID(), "Ijs", 0.50);
+        GerechtLijstItem item1 = new GerechtLijstItem("1", "Pizza", 2.00);
+        GerechtLijstItem item2 = new GerechtLijstItem("2", "Pattat", 1.00);
+        GerechtLijstItem item3 = new GerechtLijstItem("3", "Ijs", 0.50);
         List<GerechtLijstItem> lijstItems = new ArrayList<>();
         lijstItems.add(item1);
         lijstItems.add(item2);

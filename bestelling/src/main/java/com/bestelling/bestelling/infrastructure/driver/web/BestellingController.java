@@ -56,15 +56,15 @@ public class BestellingController {
         Klant test = serviceQuery.getKlantById(klant.getId());
 
         List<GerechtLijstItem> gerechtLijst = new ArrayList<>();
-        gerechtLijst.add(new GerechtLijstItem(UUID.randomUUID(), "pizza", 1.00));
-        gerechtLijst.add(new GerechtLijstItem(UUID.randomUUID(), "patta", 2.00));
+        gerechtLijst.add(new GerechtLijstItem("1", "pizza", 1.00));
+        gerechtLijst.add(new GerechtLijstItem("2", "patta", 2.00));
 
         //serviceCommand.saveGerechtLijst(gerechtLijst);
 
-        Gerecht gerecht = new Gerecht(UUID.randomUUID(), "pizza", 1.00, 1);
+        Gerecht gerecht = new Gerecht("1", "pizza", 1.00, 1);
         List<Gerecht> gerechten = new ArrayList<>();
         gerechten.add(gerecht);
-        gerechten.add(new Gerecht(UUID.randomUUID(), "patta", 2.00, 2));
+        gerechten.add(new Gerecht("2", "patta", 2.00, 2));
         Bestelling Btest = new Bestelling(Status.INBEHANDELING, gerechten, klant.getAdres(), klant.getName());
 
         //serviceCommand.saveBestelling(Btest);
