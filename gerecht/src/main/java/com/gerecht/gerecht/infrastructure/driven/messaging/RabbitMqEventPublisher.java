@@ -23,7 +23,7 @@ public class RabbitMqEventPublisher {
     }
 
     public void publishToBestelling(LijstGerechten event){
-        this.rabbitTemplate.convertAndSend(gerechtBoardExchange, "keywords.gerecht.gerecht", event);
+        this.rabbitTemplate.convertAndSend(gerechtBoardExchange, "keywords.gerecht.gerecht2", event);
         System.out.println("message sent to bestelling");
     }
 }

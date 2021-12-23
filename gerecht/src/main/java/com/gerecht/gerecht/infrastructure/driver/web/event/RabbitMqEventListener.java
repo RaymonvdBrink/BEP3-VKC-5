@@ -33,6 +33,7 @@ public class RabbitMqEventListener {
             gerechten.add(gerecht);
         }
         commandHandler.updateDatabase(gerechten);
+        commandHandler.stuurAlleGerechten();
     }
 
     @RabbitListener(queues = {"bestelling-keywords"})

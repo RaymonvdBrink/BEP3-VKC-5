@@ -72,6 +72,7 @@ public class GerechtCommandHandler {
                 gerechten.add(event.getGerechten().get(i));
             }
         }
+        System.out.println("gerechten naar bestelling: "+gerechten.toString());
         LijstGerechten gerechtenLijst = new LijstGerechten(gerechten);
         System.out.println("juiste publish naar bestelling");
         eventPublisher.publishToBestelling(gerechtenLijst);
