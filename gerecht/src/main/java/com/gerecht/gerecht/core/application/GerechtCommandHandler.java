@@ -65,10 +65,6 @@ public class GerechtCommandHandler {
     }
     public void StuurGerechtenNaarBestelling(LijstGerechten event){
 //        Besteldegerechten besteldeGerechten = new Besteldegerechten(event.getBestelling(), event.getGerechten());
-        List<Gerecht> gerechtLijst = new ArrayList<>();
-        gerechtLijst.add(new Gerecht("pizza",1.00,1));
-        gerechtLijst.add(new Gerecht("patat",2.00,1));
-        event.setGerechten(gerechtLijst);
         eventPublisher.publishToBestelling(event);
 
 //        eventPublisher.publishToBestelling(besteldeGerechten);

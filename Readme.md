@@ -3,7 +3,7 @@ Besteling draait op poort 8085
 
 De API van bestellingen heeft de volgende URLS met functionaliteit
 
-|methods|/bestelling|Geeft alle bestellingen|
+|methods|URL|omschrijving|
 |:---:|:---:|:---:|
 |Get|/bestelling|Geeft alle bestellingen|
 |Get|/bestelling/{id}|Geeft bestelling bij id|

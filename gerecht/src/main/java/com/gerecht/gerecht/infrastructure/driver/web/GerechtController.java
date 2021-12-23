@@ -58,7 +58,11 @@ public class GerechtController {
     }
     @GetMapping("/sendGerecht")
     public void stuurGerechtNaarBestelling(){
+        List<Gerecht> gerechtLijst = new ArrayList<>();
+        gerechtLijst.add(new Gerecht("4","pizza",1.00,1));
+        gerechtLijst.add(new Gerecht("5","patat",2.00,1));
         LijstGerechten lijstGerechten = new LijstGerechten();
+        lijstGerechten.setGerechten(gerechtLijst);
         gerechtService.StuurGerechtenNaarBestelling(lijstGerechten);
     }
 

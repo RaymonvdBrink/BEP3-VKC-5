@@ -27,7 +27,8 @@ public class Gerecht {
         this.aantal = aantal;
         this.ingredienten = ingredienten;
     }
-    public Gerecht(String naam, double prijs, int aantal) {
+    public Gerecht(String id, String naam, double prijs, int aantal) {
+        this.id = id;
         this.naam = naam;
         this.prijs = prijs;
         this.aantal = aantal;
