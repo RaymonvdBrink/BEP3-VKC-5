@@ -5,6 +5,7 @@ import com.gerecht.gerecht.core.domain.Gerecht;
 import com.gerecht.gerecht.core.ports.storage.GerechtRepository;
 import com.gerecht.gerecht.core.ports.storage.VoorraadRepository;
 import com.gerecht.gerecht.infrastructure.driven.messaging.RabbitMqEventPublisher;
+import com.voorraad.voorraad.infrastructure.driver.web.dto.AlleGerechtenDTO;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -44,7 +45,10 @@ public class GerechtCommandHandler {
         System.out.println(getAlleGerechten().toString());
         eventPublisher.publishToVoorraad(gerechten);
     }
+    public void stuurAlleBeschikbareGerechten(AlleGerechtenDTO event){
 
+        eventPublisher.publishToBestelling(event);
+    }
 
 
 

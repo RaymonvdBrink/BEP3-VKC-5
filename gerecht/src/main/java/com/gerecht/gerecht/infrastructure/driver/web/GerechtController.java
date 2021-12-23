@@ -53,4 +53,5 @@ public class GerechtController {
         gerechtService.stuurAlleGerechten();
 
     }
+    
 }
