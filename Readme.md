@@ -27,7 +27,7 @@ de API van gerecht heeft de volgende URLS met functionaliteiten
 
 |methods|URL|omschrijving|
 |:---:|:---:|:---:|
-|Get|gerecht/getAll/geeft alle gerechten|
+|Get|gerecht/getAll|geeft alle gerechten|
 |Post|gerecht/create|ingredient aan een lijst en maakt daarna een gerecht met ingredient
 |Delete|gerecht/delete/{id}|verwijderd het gerecht
 |Get|/gerecht /sendAll |verstuurd een lijst van gerechten naar voorraad
