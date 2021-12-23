@@ -36,7 +36,7 @@ public class RabbitMqEventListener {
     }
 
     @RabbitListener(queues = {"bestelling-keywords"})
-    void listen2(LijstGerechten gerechten) {                     // TODO: met raymon verbinden
+    void listen2(LijstGerechten gerechten) {
         commandHandler.stuurAlleBeschikbareGerechten(gerechten);
 
     }

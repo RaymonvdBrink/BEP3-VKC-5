@@ -36,6 +36,7 @@ public class RabbitMqEventListener {
 
     @RabbitListener(queues = {"gerecht2-keywords"})
     void listen(BeschikbareGerechtenDTO itemList){
+        System.out.println("HELLO");
         List<GerechtLijstItem> gerechtenList = new ArrayList();
         for (GerechtenDTO dto: itemList.getGerechten()) {
             gerechtenList.add(new GerechtLijstItem(dto.getId(), dto.getNaam(), dto.getPrijs()));

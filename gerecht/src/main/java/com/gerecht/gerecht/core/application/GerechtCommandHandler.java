@@ -40,34 +40,54 @@ public class GerechtCommandHandler {
     public List<Gerecht> getAlleGerechten(){
         return gerechtRepository.findAll();
     }
-
     public void stuurAlleGerechten(){
 
         LijstGerechten gerechten = new LijstGerechten(getAlleGerechten());
         System.out.println(getAlleGerechten().toString());
         eventPublisher.publishToVoorraad(gerechten);
     }
-//    public void stuurAlleBeschikbareGerechten(LijstGerechten event){
-//
-//        List<Gerecht> gerechten = new ArrayList<>();
-//        for(int i =0;i<event.getGerechten().size();i++){
-//            if(event.getGerechten().get(i).getBeschikbaarheid() == true){
-//                gerechten.add(event.getGerechten().get(i));
-//            }
-//        }
-//        event.setGerechten(gerechten);
-//        eventPublisher.publishNaarBestelling(event);
-//
-//
-//    }
-    public void StuurberschikbaregerechtenBestelling(Besteldegerechten event){
-        eventPublisher.publishNaarBestelling(event);
-    }
-    public void StuurGerechtenNaarBestelling(LijstGerechten event){
-//        Besteldegerechten besteldeGerechten = new Besteldegerechten(event.getBestelling(), event.getGerechten());
-        eventPublisher.publishToBestelling(event);
 
-//        eventPublisher.publishToBestelling(besteldeGerechten);
+//    public void StuurberschikbaregerechtenBestelling(Besteldegerechten event){
+//        System.out.println("verkeerde publish naar bestelling");
+//        eventPublisher.publishNaarBestelling(event);
+//    }
+    public void StuurGerechtenNaarBestelling(LijstGerechten event){
+        System.out.println("verkeerde publish naar bestelling");
+        eventPublisher.publishToBestelling(event);
+    }
+
+
+    public void updateIngredienten(List<Gerecht> gerechten){
+        LijstGerechten besteldeGerechten = new LijstGerechten(gerechten);
+        System.out.println(getAlleGerechten().toString());
+        eventPublisher.publishToVoorraad(besteldeGerechten);
+    }
+
+    public void stuurAlleBeschikbareGerechten(LijstGerechten event) {
+
+        List<Gerecht> gerechten = new ArrayList<>();
+
+        for (int i = 0; i < event.getGerechten().size(); i++) {
+            if(event.getGerechten().get(i).getBeschikbaarheid()){
+                gerechten.add(event.getGerechten().get(i));
+            }
+        }
+        LijstGerechten gerechtenLijst = new LijstGerechten(gerechten);
+        System.out.println("juiste publish naar bestelling");
+        eventPublisher.publishToBestelling(gerechtenLijst);
+
+        updateIngredienten(gerechten);
+
+    }
+
+
+    public void updateDatabase(List<Gerecht> gerechten) {
+
+        for(int i = 0;i<gerechten.size();i++){
+
+            gerechtRepository.save(gerechten.get(i));
+
+        }
     }
 
 }
