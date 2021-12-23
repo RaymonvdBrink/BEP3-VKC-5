@@ -6,15 +6,15 @@ import java.time.Instant;
 import java.util.List;
 import java.util.UUID;
 
-public class AlleGerechten extends GerechtEvent{
+public class LijstGerechten extends GerechtEvent{
     private List<Gerecht> gerechten;
 
 
-    public AlleGerechten(List<Gerecht> gerechten){
+    public LijstGerechten(List<Gerecht> gerechten){
         this.gerechten = gerechten;
     }
 
-    public AlleGerechten(){}
+    public LijstGerechten(){}
 
     @Override
     public String getEventKey(){

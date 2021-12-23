@@ -27,6 +27,10 @@ public class RabbitMqConfig {
 
     @Value("${messaging.queue.gerecht-keywords}")
     private String gerechtQueueName;
+
+    @Value("${messaging.queue.gerecht2-keywords}")
+    private String gerechtQueueName2;
+
     @Value("${messaging.queue.all-keywords}")
     private String allKeywordsQueueName;
 
@@ -49,6 +53,11 @@ public class RabbitMqConfig {
     }
 
     @Bean
+    public Queue gerecht2Queue() {
+        return QueueBuilder.durable(gerechtQueueName2).build();
+    }
+
+    @Bean
     public Binding gerechtKeywordsBinding() {
         return BindingBuilder
                 .bind(gerechtQueue())
@@ -62,6 +71,16 @@ public class RabbitMqConfig {
                 .to(gerechtBoardExchange())
                 .with(keywordsRoutingKey);
     }
+
+    @Bean
+    public Binding gerechtKeywordsBinding2() {
+        return BindingBuilder
+                .bind(gerecht2Queue())
+                .to(gerechtBoardExchange())
+                .with(gerechtKeywordsRoutingKey);
+    }
+
+
 
     @Bean
     public RabbitMqEventPublisher EventPublisher(RabbitTemplate template) {

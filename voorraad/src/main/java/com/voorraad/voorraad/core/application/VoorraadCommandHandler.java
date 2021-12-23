@@ -53,14 +53,16 @@ public class VoorraadCommandHandler {
     }
 
 
-    public List<Gerecht> geefAlleBeschikbareGerechten(List<Gerecht> gerechten){
-        List<Gerecht> beschikbareGerechten = new ArrayList<>();
+    public List<Gerecht> updateBeschikbaarheidGerechten(List<Gerecht> gerechten){
+
         for (int i = 0;i<gerechten.size();i++){
             if(checkGerechtBeschikbaar(gerechten.get(i))){
-                beschikbareGerechten.add(gerechten.get(i));
+                gerechten.get(i).setBeschikbaarheid(true);
+            }else{
+                gerechten.get(i).setBeschikbaarheid(false);
             }
         }
-        return beschikbareGerechten;
+        return gerechten;
     }
 
     public void sendMessage(AlleGerechten event){

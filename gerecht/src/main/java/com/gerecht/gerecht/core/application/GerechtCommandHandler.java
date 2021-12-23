@@ -1,6 +1,6 @@
 package com.gerecht.gerecht.core.application;
 
-import com.gerecht.gerecht.core.domain.Event.AlleGerechten;
+import com.gerecht.gerecht.core.domain.Event.LijstGerechten;
 import com.gerecht.gerecht.core.domain.Gerecht;
 import com.gerecht.gerecht.core.ports.storage.GerechtRepository;
 import com.gerecht.gerecht.core.ports.storage.VoorraadRepository;
@@ -8,6 +8,7 @@ import com.gerecht.gerecht.infrastructure.driven.messaging.RabbitMqEventPublishe
 import com.voorraad.voorraad.infrastructure.driver.web.dto.AlleGerechtenDTO;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -41,14 +42,24 @@ public class GerechtCommandHandler {
 
     public void stuurAlleGerechten(){
 
-        AlleGerechten gerechten = new AlleGerechten(getAlleGerechten());
+        LijstGerechten gerechten = new LijstGerechten(getAlleGerechten());
         System.out.println(getAlleGerechten().toString());
         eventPublisher.publishToVoorraad(gerechten);
     }
-    public void stuurAlleBeschikbareGerechten(AlleGerechtenDTO event){
-
+    public void stuurAlleBeschikbareGerechten(LijstGerechten event){
+        //eventPublisher.publishToBestelling(event);
+        List<Gerecht> gerechten = new ArrayList<>();
+        for(int i =0;i<event.getGerechten().size();i++){
+            if(event.getGerechten().get(i).getBeschikbaarheid() == true){
+                gerechten.add(event.getGerechten().get(i));
+            }
+        }
+        event.setGerechten(gerechten);
         eventPublisher.publishToBestelling(event);
+
     }
+
+
 
 
 

@@ -17,6 +17,7 @@ public class Gerecht {
     private double prijs;
     private int aantal;
     private List<Ingredient> ingredienten;
+    private boolean beschikbaarheid;
 
 
     public Gerecht(String id, String naam, double prijs, int aantal, List<Ingredient> ingredienten ) {
@@ -37,21 +38,18 @@ public class Gerecht {
         this.id = id;
     }
 
-    @Override
-    public String toString() {
-        return "Gerecht{" +
-                "id='" + id + '\'' +
-                ", naam='" + naam + '\'' +
-                ", prijs=" + prijs +
-                ", aantal=" + aantal +
-                ", ingredienten=" + ingredienten +
-                '}';
-    }
+
 
     public String getNaam() {
         return naam;
     }
 
+    public void setBeschikbaarheid(boolean bool){
+        this.beschikbaarheid = bool;
+    }
+    public boolean getBeschikbaarheid(){
+        return beschikbaarheid;
+    }
     public void setNaam(String naam) {
         this.naam = naam;
     }
@@ -80,4 +78,14 @@ public class Gerecht {
         this.ingredienten = ingredienten;
     }
 
+    @Override
+    public String toString() {
+        return "Gerecht{" +
+                "id='" + id + '\'' +
+                ", naam='" + naam + '\'' +
+                ", prijs=" + prijs +
+                ", aantal=" + aantal +
+                ", ingredienten=" + ingredienten +
+                '}';
+    }
    }

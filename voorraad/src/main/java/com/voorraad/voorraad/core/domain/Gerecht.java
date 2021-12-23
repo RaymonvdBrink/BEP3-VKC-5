@@ -1,4 +1,4 @@
-package com.gerecht.gerecht.core.domain;
+package com.voorraad.voorraad.core.domain;
 
 import com.voorraad.voorraad.core.domain.Ingredient;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -18,7 +18,14 @@ public class Gerecht {
     private double prijs;
     private int aantal;
     private List<Ingredient> ingredienten;
+    private boolean beschikbaarheid;
 
+    public void setBeschikbaarheid(boolean beschikbaarheid) {
+        this.beschikbaarheid = beschikbaarheid;
+    }
+    public boolean getBeschikbaarheid(){
+        return beschikbaarheid;
+    }
 
     public Gerecht(String id, String naam, double prijs, int aantal, List<Ingredient> ingredienten) {
         this.id = id;
