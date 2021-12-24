@@ -2,12 +2,12 @@ package com.gerecht.gerecht.infrastructure.config;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.gerecht.gerecht.infrastructure.driven.messaging.RabbitMqEventPublisher;
+import com.gerecht.gerecht.infrastructure.driven.messaging.RabbitMqEventPublisher2;
 import org.springframework.amqp.core.*;
 import org.springframework.amqp.rabbit.connection.CachingConnectionFactory;
 import org.springframework.amqp.rabbit.connection.ConnectionFactory;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.amqp.support.converter.Jackson2JsonMessageConverter;
-import org.springframework.amqp.support.converter.MessageConverter;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -24,6 +24,9 @@ public class RabbitMqConfig {
 
     @Value("${messaging.exchange.gerechtboard}")
     private String gerechtBoardExchangeName;
+
+    @Value("${messaging.exchange.gerechtboard2}")
+    private String gerechtBoard2ExchangeName;
 
     @Value("${messaging.queue.gerecht-keywords}")
     private String gerechtQueueName;
@@ -43,6 +46,12 @@ public class RabbitMqConfig {
     public TopicExchange gerechtBoardExchange() {
         return new TopicExchange(gerechtBoardExchangeName);
     }
+
+    @Bean
+    public TopicExchange gerechtBoard2Exchange() {
+        return new TopicExchange(gerechtBoard2ExchangeName);
+    }
+
     public Queue keywordsQueue() {
         return QueueBuilder.durable(allKeywordsQueueName).build();
     }
@@ -76,7 +85,7 @@ public class RabbitMqConfig {
     public Binding gerechtKeywordsBinding2() {
         return BindingBuilder
                 .bind(gerecht2Queue())
-                .to(gerechtBoardExchange())
+                .to(gerechtBoard2Exchange())
                 .with(gerechtKeywordsRoutingKey);
     }
 
@@ -85,6 +94,11 @@ public class RabbitMqConfig {
     @Bean
     public RabbitMqEventPublisher EventPublisher(RabbitTemplate template) {
         return new RabbitMqEventPublisher(template, gerechtBoardExchangeName);
+    }
+
+    @Bean
+    public RabbitMqEventPublisher2 EventPublisher2(RabbitTemplate template) {
+        return new RabbitMqEventPublisher2(template, gerechtBoard2ExchangeName);
     }
 
     @Bean

@@ -4,6 +4,7 @@ import com.voorraad.voorraad.infrastructure.driver.web.dto.IngredientDTO;
 import lombok.Data;
 
 import java.util.List;
+import java.util.UUID;
 
 
 public class GerechtDTO {
@@ -12,6 +13,14 @@ public class GerechtDTO {
     private double prijs;
     private int aantal;
     private List<IngredientDTO> ingredienten;
+    private boolean beschikbaarheid;
+
+    public void setBeschikbaarheid(boolean beschikbaarheid) {
+        this.beschikbaarheid = beschikbaarheid;
+    }
+    public boolean getBeschikbaarheid(){
+        return beschikbaarheid;
+    }
 
     public GerechtDTO(String id, String naam, double prijs, int aantal) {
         this.id = id;
@@ -69,6 +78,7 @@ public class GerechtDTO {
                 ", naam='" + naam + '\'' +
                 ", prijs=" + prijs +
                 ", aantal=" + aantal +
+                ", beschikbaarheid=" + beschikbaarheid +
                 ", ingredienten=" + ingredienten +
                 '}';
     }

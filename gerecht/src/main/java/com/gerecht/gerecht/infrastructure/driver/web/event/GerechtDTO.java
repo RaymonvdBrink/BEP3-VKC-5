@@ -11,17 +11,38 @@ public class GerechtDTO {
     private double prijs;
     private int aantal;
     private List<IngredientDTO> ingredienten;
+    private boolean beschikbaarheid;
 
     public double getPrijs() {
         return prijs;
+    }
+
+    public void setAantal(int aantal) {
+        this.aantal = aantal;
+    }
+    public boolean getbeschikbaarheid(){
+        return beschikbaarheid;
     }
 
     public String getId() {
         return id;
     }
 
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public void setNaam(String naam) {
+        this.naam = naam;
+    }
+
+
     public void setIngredienten(List<IngredientDTO> ingredienten) {
         this.ingredienten = ingredienten;
+    }
+
+    public void setPrijs(double prijs) {
+        this.prijs = prijs;
     }
 
     public List<IngredientDTO> getIngredienten() {
@@ -34,5 +55,17 @@ public class GerechtDTO {
 
     public String getNaam() {
         return naam;
+    }
+
+    @Override
+    public String toString() {
+        return "GerechtDTO{" +
+                "id='" + id + '\'' +
+                ", naam='" + naam + '\'' +
+                ", prijs=" + prijs +
+                ", aantal=" + aantal +
+                ", ingredienten=" + ingredienten +
+                ", beschikbaarheid=" + beschikbaarheid +
+                '}';
     }
 }

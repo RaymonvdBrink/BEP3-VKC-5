@@ -39,5 +39,10 @@ public class LijstGerechten extends GerechtEvent{
         this.gerechten = gerechten;
     }
 
-
+    @Override
+    public String toString() {
+        return "LijstGerechten{" +
+                "gerechten=" + gerechten +
+                '}';
+    }
 }

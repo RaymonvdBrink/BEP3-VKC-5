@@ -8,5 +8,4 @@ import java.util.UUID;
 
 public interface GerechtRepository extends MongoRepository<Gerecht, String> {
 
-
 }

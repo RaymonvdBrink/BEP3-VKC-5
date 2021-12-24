@@ -17,6 +17,14 @@ public class IngredientDTO {
         return aantal;
     }
 
+    public void setNaam(String naam) {
+        this.naam = naam;
+    }
+
+    public void setAantal(int aantal) {
+        this.aantal = aantal;
+    }
+
     @Override
     public String toString() {
         return "IngredientDTO{" +

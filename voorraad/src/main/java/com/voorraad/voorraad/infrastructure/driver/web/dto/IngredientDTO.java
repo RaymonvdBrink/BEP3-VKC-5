@@ -19,4 +19,12 @@ public class IngredientDTO {
     public void setNaam(String naam) {
         this.naam = naam;
     }
+
+    @Override
+    public String toString() {
+        return "IngredientDTO{" +
+                "naam='" + naam + '\'' +
+                ", aantal=" + aantal +
+                '}';
+    }
 }

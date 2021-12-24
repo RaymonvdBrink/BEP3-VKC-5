@@ -1,5 +1,6 @@
 package com.voorraad.voorraad.core.domain.event;
 
+
 import com.voorraad.voorraad.core.domain.Gerecht;
 import com.voorraad.voorraad.infrastructure.driver.web.dto.GerechtEvent;
 

@@ -4,6 +4,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.MongoId;
 
 
+import javax.persistence.Id;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -11,28 +12,21 @@ import java.util.UUID;
 @Document(collection = "Gerecht")
 public class Gerecht {
 
-    @MongoId
+    @Id
     private String id;
     private String naam;
     private double prijs;
-    private int aantal;
     private List<Ingredient> ingredienten;
     private boolean beschikbaarheid;
 
 
-    public Gerecht(String id, String naam, double prijs, int aantal, List<Ingredient> ingredienten ) {
+    public Gerecht(String id, String naam, double prijs, int aantal, List<Ingredient> ingredienten) {
         this.id = id;
         this.naam = naam;
         this.prijs = prijs;
-        this.aantal = aantal;
         this.ingredienten = ingredienten;
     }
-    public Gerecht(String id, String naam, double prijs, int aantal) {
-        this.id = id;
-        this.naam = naam;
-        this.prijs = prijs;
-        this.aantal = aantal;
-    }
+
 
     public Gerecht(){}
 
@@ -68,13 +62,7 @@ public class Gerecht {
         this.prijs = prijs;
     }
 
-    public int getAantal() {
-        return aantal;
-    }
 
-    public void setAantal(int aantal) {
-        this.aantal = aantal;
-    }
 
     public List<Ingredient> getIngredienten() {
         return ingredienten;
@@ -90,7 +78,7 @@ public class Gerecht {
                 "id='" + id + '\'' +
                 ", naam='" + naam + '\'' +
                 ", prijs=" + prijs +
-                ", aantal=" + aantal +
+                ", beschikbaarheid=" + beschikbaarheid+
                 ", ingredienten=" + ingredienten +
                 '}';
     }

@@ -46,8 +46,10 @@ public class RabbitMqConfig {
 
     @Bean
     public TopicExchange gerechtBoardExchange() {
-        return new TopicExchange("gerechtboard");
+        return new TopicExchange("gerechtboard2");
     }
+
+
 
     @Bean
     public Queue bestellingKeywordsQueue() {

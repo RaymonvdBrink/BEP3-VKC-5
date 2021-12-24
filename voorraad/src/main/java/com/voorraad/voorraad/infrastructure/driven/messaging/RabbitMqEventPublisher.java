@@ -1,6 +1,9 @@
 package com.voorraad.voorraad.infrastructure.driven.messaging;
 
+
+import com.voorraad.voorraad.core.domain.Gerecht;
 import com.voorraad.voorraad.core.domain.event.VoorraadEvent;
+import com.voorraad.voorraad.infrastructure.driver.web.dto.GerechtDTO;
 import com.voorraad.voorraad.infrastructure.driver.web.dto.GerechtEvent;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 
@@ -18,8 +21,8 @@ public class RabbitMqEventPublisher {
         this.voorraadBoardExchange = voorraadBoardExchange;
     }
 
-    public void publish(GerechtEvent event) {
+    public void publish(List<GerechtDTO> event) {
         System.out.println("message sent!");
-        this.rabbitTemplate.convertAndSend(voorraadBoardExchange, event.getEventKey(), event);
+        this.rabbitTemplate.convertAndSend(voorraadBoardExchange, "keywords.voorraad.voorraad", event);
     }
 }

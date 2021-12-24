@@ -1,10 +1,12 @@
 package com.voorraad.voorraad.infrastructure;
 
+
 import com.voorraad.voorraad.core.application.VoorraadCommandHandler;
 import com.voorraad.voorraad.core.domain.Gerecht;
 import com.voorraad.voorraad.core.domain.Ingredient;
 import com.voorraad.voorraad.core.domain.Voorraad;
 import com.voorraad.voorraad.core.port.storage.GerechtRepository;
+import com.voorraad.voorraad.core.port.storage.VoorraadRepository;
 import com.voorraad.voorraad.infrastructure.driver.web.dto.IngredientDTO;
 import com.voorraad.voorraad.infrastructure.driver.web.dto.VoorraadDTO;
 import org.springframework.web.bind.annotation.*;
@@ -17,15 +19,15 @@ import java.util.List;
 public class VoorraadController {
 
     private final VoorraadCommandHandler voorraadCommandHandler;
-    private final GerechtRepository gerechtRepository;
+
 
     public VoorraadController(VoorraadCommandHandler voorraadCommandHandler, GerechtRepository gerechtRepository) {
         this.voorraadCommandHandler = voorraadCommandHandler;
-        this.gerechtRepository = gerechtRepository;
+
     }
     @GetMapping("/getAll")
-    public List<Gerecht> geefGerechten(){
-        return gerechtRepository.findAll();
+    public List<Voorraad> geefGerechten(){
+        return voorraadCommandHandler.findAll();
 
     }
 

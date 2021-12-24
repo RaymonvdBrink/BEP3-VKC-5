@@ -38,7 +38,7 @@ public class GerechtController {
         }
 
         Gerecht gerecht = new Gerecht(gerechtDTO.getId(), gerechtDTO.getNaam(), gerechtDTO.getPrijs(), gerechtDTO.getAantal(), list);
-
+        gerecht.setBeschikbaarheid(gerechtDTO.getbeschikbaarheid());
 
 
 
@@ -53,14 +53,14 @@ public class GerechtController {
 
     @GetMapping("/sendAll")
     public void stuurGerechten(){
-        gerechtService.stuurAlleGerechten();
+        gerechtService.updateIngredienten(gerechtService.getAlleGerechten());
 
     }
     @GetMapping("/sendGerecht")
     public void stuurGerechtNaarBestelling(){
         List<Gerecht> gerechtLijst = new ArrayList<>();
-        gerechtLijst.add(new Gerecht("4","pizza",1.00,1));
-        gerechtLijst.add(new Gerecht("5","patat",2.00,1));
+//        gerechtLijst.add(new Gerecht("4","pizza",1.00,1));
+//        gerechtLijst.add(new Gerecht("5","patat",2.00,1));
         LijstGerechten lijstGerechten = new LijstGerechten();
         lijstGerechten.setGerechten(gerechtLijst);
         gerechtService.StuurGerechtenNaarBestelling(lijstGerechten);

@@ -1,5 +1,6 @@
 package com.voorraad.voorraad.core.domain;
 
+
 import lombok.Data;
 import lombok.Generated;
 import lombok.NonNull;
