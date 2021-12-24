@@ -32,13 +32,19 @@ public class RabbitMqEventListener {
             gerecht.setBeschikbaarheid(event.get(i).getbeschikbaarheid());
             gerechten.add(gerecht);
         }
-        commandHandler.updateDatabase(gerechten);
-        commandHandler.stuurAlleGerechten();
+
+        commandHandler.stuurAlleBeschikbareGerechten();
     }
 
     @RabbitListener(queues = {"bestelling-keywords"})
     void listen2(LijstGerechten gerechten) {
-        commandHandler.stuurAlleBeschikbareGerechten(gerechten);
+        List<Gerecht> lijst = new ArrayList<>();
+        for(int i = 0;i<gerechten.getGerechten().size();i++){
+            lijst.add(commandHandler.getGerecht(gerechten.getGerechten().get(i).getId()));
+        }
+
+        commandHandler.updateIngredienten(lijst);
+
 
     }
 }

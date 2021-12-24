@@ -2,12 +2,12 @@ package com.gerecht.gerecht.infrastructure.config;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.gerecht.gerecht.infrastructure.driven.messaging.RabbitMqEventPublisher;
+import com.gerecht.gerecht.infrastructure.driven.messaging.RabbitMqEventPublisher2;
 import org.springframework.amqp.core.*;
 import org.springframework.amqp.rabbit.connection.CachingConnectionFactory;
 import org.springframework.amqp.rabbit.connection.ConnectionFactory;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.amqp.support.converter.Jackson2JsonMessageConverter;
-import org.springframework.amqp.support.converter.MessageConverter;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -94,6 +94,11 @@ public class RabbitMqConfig {
     @Bean
     public RabbitMqEventPublisher EventPublisher(RabbitTemplate template) {
         return new RabbitMqEventPublisher(template, gerechtBoardExchangeName);
+    }
+
+    @Bean
+    public RabbitMqEventPublisher2 EventPublisher2(RabbitTemplate template) {
+        return new RabbitMqEventPublisher2(template, gerechtBoard2ExchangeName);
     }
 
     @Bean
