@@ -1,4 +1,4 @@
-#Bestelling
+# Bestelling
 Besteling draait op poort 8085
 
 De API van bestellingen heeft de volgende URLS met functionaliteit
@@ -20,7 +20,7 @@ Bestelling heeft de volgende rabbitMQ functionaliteit<br />
 •    Een listener die luister naar de gerechten q en daar luistert naar een nieuwe lijst van beschikbare gerechten en dan de oude verwijderd en de nieuwe lijst van beschikbare gerechten opslaat
 
 
-#Gerecht
+# Gerecht
 Gerecht draait op poort 8082
 
 de API van gerecht heeft de volgende URLS met functionaliteiten
@@ -40,7 +40,7 @@ Gerecht heeft de volgende rabbitMQ functionaliteit<br />
 •    Een listener die luister naar bestelling voor beschikbare gerechten voor die bestelling<br />
 
 
-#Voorraad
+# Voorraad
 Voorraad draait op poort 8083
 
 De API van voorraad heeft de volgende URLS met functionaliteit
@@ -55,7 +55,7 @@ Voorraad heeft de volgende rabbitMQ functionaltiteiten<br />
 • Een publisher die de beschikbare gerechten door stuurt naar gerecht<br />
 • Een listener die luistert naar gerecht<br />
 
-#Registreren
+# Registreren
 |methods|URL|omschrijving|
 |:---:|:---:|:---:|
 |Post|/user/register|Registreert gebruiker naar MongoDB en stuurt een message naar de queue|
